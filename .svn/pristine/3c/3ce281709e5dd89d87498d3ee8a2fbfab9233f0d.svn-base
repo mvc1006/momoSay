@@ -1,0 +1,231 @@
+.mui-bar{
+        box-shadow: none;
+       
+        position: static;
+        background: transparent;
+    }
+    
+    .header{
+        width: 98%;
+        height: 180px;
+        background: saddlebrown;
+        background-image: url(http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/shouye/vip.png);
+//      opacity: .3;
+        background-position: center;
+        background-size: cover;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-top: -103px;
+        
+        .cen{
+            width: 300px;
+            height: 100px;
+//          background:saddlebrown;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-top: 50px;
+             div{
+                width: 60px;
+                
+                img{
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+            
+            ul{
+                width: 200px;
+                height: 60px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-around;
+                font-size: 14px;
+                color: #FFFFFF;
+//              color: #e281c2;
+//              color: #000000;
+                font-weight: 900;
+            }
+        }
+     
+    }
+    
+    .mui-content-padded{
+        color: #666666;
+      
+    }
+    
+    
+.setMeal{
+    width: 98%;
+    height: auto;
+    
+     border-radius: 5px;
+    padding: 10px 0px;
+    margin: 15px auto;
+    margin-bottom: 0 px;
+    
+    .yearCard:first-child{
+        margin-top: -10px;
+    }
+    
+ 
+    .yearCard{
+        width: 100%;
+        height: 80px;
+        padding: 5px 10px;
+//     background: #F0EFEE;
+ background: white;
+        border-radius: 5px;
+        margin-top: 10px;
+        
+        ul{
+             width: 100%;
+             height: 60px;
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+            justify-content: space-between;
+            li{
+                font-size: 12px;
+            }
+            li:first-child{
+                width: 150px;
+                height:40px;
+//              background: salmon;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: space-between;
+                
+                span:first-child{
+                    font-size: 14px;
+                    color: #e281c2;
+                    color: #e54bb2;
+                }
+                span:last-child{
+                   
+                    color: #666666;
+                }
+            }
+            
+            li:nth-child(2){
+                width: 100px;
+                height: 100%;
+//              background: sandybrown;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                span:first-child{
+                    font-size: 14px;
+                     color: #e281c2;
+                    
+                }
+                 span:last-child{
+                   
+                    color: #666666;
+                    text-decoration: line-through;
+                }
+            }
+            
+            li:last-child{
+                width: 25px;
+                height: 25px;
+//              background: saddlebrown;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 5px;
+                input{
+                    width: 20px;
+                    height: 20px;
+                    background: red;
+                    
+                }
+            }
+        }
+    }
+    
+  
+}
+
+
+.payWay{
+     width: 98%;
+    height: auto;
+    margin: 0 auto;
+//  padding: 10px 0px;
+    
+   
+    
+    .alipay,.wxpay{
+        width: 100%;
+        height: 80px;
+//      background: darkcyan;
+         background: white;
+         border-radius: 5px;
+         margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        
+        .left{
+            width: 165px;
+            height: 100%;
+//          background: darkgoldenrod;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            margin-left: 25px;
+            
+            .img{
+             width: 50px;
+             img{
+                 width: 100%;
+             }   
+            }
+            
+            .title{
+                width: 110px;
+               height: 50px;
+//             background: darkgreen;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               justify-content: space-around;
+               
+               p:first-child{
+                   font: "agency fb";
+                   font-size: 14px;
+                   
+               }
+               
+               p:last-child{
+                   font-size: 12px;
+               }
+            }
+        }
+        
+        input{
+            margin-right: 18px;
+            width: 20px;
+                    height: 20px;
+                    background: red;
+        }
+        
+    }
+}
+
+
+
+
+button{
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+   
+//  margin-bottom: 10px;
+}

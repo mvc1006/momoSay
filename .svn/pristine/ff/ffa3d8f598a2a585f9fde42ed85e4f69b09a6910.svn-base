@@ -1,0 +1,252 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/reset.css" />
+		 <link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_l3avnzji1lh.css" />
+		<link rel="stylesheet" href="css/momSay1.css" />
+		<link rel="stylesheet" href="css/swiper-4.1.0.min.css" />
+		<script src="js/swiper.min.js"></script>
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<style type="text/css">
+			
+			/*#study{
+				color: #DD524D;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+		    <i style="margin-left: 5px;  color: #e281c2;"class="iconfont icon-shoucang1"></i>
+		    <h1 class="mui-title">妈妈说</h1>
+		   <i style="margin-right: 5px;  color: #e281c2;"  class="iconfont icon-leimupinleifenleileibie--"></i>
+		</header>
+		<div class="mui-content wrap">
+		    <!--轮播组件-->
+	   <!--轮播组件-->
+	   <div class="swiper-container mui-slider">
+			<div id="banners" class="swiper-wrapper">
+				
+				
+			</div>
+		</div>
+	    
+	    <!--首推分类-->
+	    <div id="nav" class="shoutui mui-row">
+	    	
+	    
+	    </div>
+	    
+	    
+	    <!--学习提示-->
+	    <div class="reminder">	    	
+	    	<img  id="reminder" src="" alt="" />
+	    </div>
+	    
+	    
+	    <!--识字识物开始分类-->
+	    <div id="kind" class="kind">
+	    	<!--fruits-->
+	    	<!--<div class="class">-->
+	    		<!-- <p class="title"> 
+	    			<span>幼儿早教</span>
+	    			<span><i class="iconfont icon-gengduo1"></i></span>
+	    		</p> -->
+	    	
+	    	<!--</div>-->	
+	    </div>
+	    
+	    
+	    
+		</div>
+		
+		
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			 	mui.init({
+					preloadPages:[{
+					  'url':'./subpages/articleDetail11.html',
+					  'id':'articleDetail11.html'
+						    }],
+					
+					})
+		</script>
+		
+		
+	</body>
+
+</html>
+
+<script>
+	
+	
+	 mui.plusReady(function(){
+		var access_token = localStorage.getItem("access_token");//取回students变量
+		mui.ajax({
+			url:'http://www.internet-web.cn/Mother/MotherMain',
+			type:'GET',
+			data:{'access_token':access_token},
+			success:function(data){
+				data = JSON.parse(data);
+
+				var bannerList = data.data.bannerList;
+
+			
+				for(var i  = 0;i<bannerList.length;i++){
+
+					 ImgUrl = bannerList[i].ImgUrl;
+
+					
+					
+					 banners =
+					   ' <div class="swiper-slide mui-slider-item" data-hash="slide1">	'+		
+							'<img src="'+ImgUrl+'" alt="" />'+
+						'</div>';
+					
+
+					$('#banners').append(banners);
+
+					 var swiper = new Swiper('.swiper-container', {
+					      spaceBetween: 30,
+					      centeredSlides: true,
+					      loop:true,
+					      autoplay: {
+					        delay: 3000,
+					        disableOnInteraction: false,
+					      },
+					      pagination: {
+					        el: '.swiper-pagination',
+					        clickable: true,
+					      },
+					      navigation: {
+					        nextEl: '.swiper-button-next',
+					        prevEl: '.swiper-button-prev',
+					      },
+					    });
+				}
+
+
+
+				// --------导航
+				var cateList =data.data.cateList;
+				for(var j = 0;j<cateList.length;j++){
+
+					var ID  = cateList[j].ID;
+					var Name  = cateList[j].Name;					
+					var ImgUrl  = cateList[j].ImgUrl;
+
+					var navicon =
+					'<div id="'+ID+'" class="mui-col-xs-1 mui-col-sm-1">'+	    	
+						'<img src="'+ImgUrl+'" alt="" />'+
+						'<span>'+Name+'</span>'+
+					'</div>';
+
+
+					$('#nav').append(navicon);
+				}
+
+
+				// -----------学习提示---
+
+				var advertLink = data.data.advertObj.ImgUrl;
+				
+				document.getElementById('reminder').setAttribute('src',advertLink);
+
+
+
+				// -----------课程
+
+				var courseMainList = data.data.courseMainList;
+
+				for(var k = 0;k<courseMainList.length;k++){
+
+					var CateName = courseMainList[k].CateName;
+					var ID = courseMainList[k].ID;
+					var courseList = courseMainList[k].courseList;
+
+
+						// ---  第一层
+
+
+					var kindList = 
+					'<div id="class'+k+'" class="class">'+
+						'<p class="title"> '+
+							'<span>'+CateName+'</span>'+
+							'<span><i class="iconfont icon-gengduo1"></i></span>'+
+						'</p>'+
+						
+					'</div>	'
+
+					$('#kind').append(kindList);
+					
+					// mui.toast(courseList[1].SubImg);
+					for(var c = 0;c<courseList.length;c++){
+						
+						var ID = courseList[c].ID;
+						var SubImg = courseList[c].SubImg;
+						var Title = courseList[c].Title;
+						var Desp = courseList[c].Desp;
+						var OldPrice = courseList[c].OldPrice;
+						var NewPrice = courseList[c].NewPrice;
+						var SubUser = courseList[c].SubUser;
+
+
+				
+						// ----第二层
+						var classList = 
+							'<div id="'+ID+'" class="each mui-row">'+
+									'<div class="img mui-col-xs-4 mui-col-sm-4">'+
+										'<img src="'+SubImg+'" alt="" />'+
+									'</div>'+
+									'<div class="details mui-col-xs-7 mui-col-sm-7">'+
+										'<h5>'+Title+'</h5>'+
+										'<p>简介：<span>'+Desp+'</span></p>'+
+										'<ul>'+
+											'<li>'+
+												'<p>价格：<span>'+OldPrice+'</span></p>'+
+											'</li>'+
+											'<li>'+
+												'<p>订阅量：<span>'+SubUser+'</span></p>'+
+											'</li>'+
+										'</ul>'+
+										
+									'</div>'+
+									
+								'</div>';
+
+								
+								$('#class'+k+'').append(classList);
+
+					}
+
+
+				
+
+
+				}
+
+
+
+
+					
+			}
+
+		})
+
+
+
+
+
+
+
+	
+});
+</script>

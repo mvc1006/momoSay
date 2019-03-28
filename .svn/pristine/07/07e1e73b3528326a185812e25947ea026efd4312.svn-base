@@ -1,0 +1,24 @@
+.wrap {
+  width: 95%;
+  margin: 20px auto;
+  background: #FFFFFF; }
+  .wrap .banner img {
+    width: 100%; }
+  .wrap .jq22-container {
+    width: 100%;
+    height: 50px;
+    background: #fdfafc;
+    border-radius: 5px;
+    padding: 0 10px;
+    margin: 10px auto; }
+  .wrap .kind {
+    margin-top: 10px; }
+    .wrap .kind ul {
+      width: 100%;
+      position: relative;
+      border: none; }
+      .wrap .kind ul li {
+        height: 80px;
+        display: flex;
+        align-items: center;
+        position: relative; }

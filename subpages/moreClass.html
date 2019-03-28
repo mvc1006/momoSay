@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_v34fxlm07h.css" />
+		<link rel="stylesheet" href="../css/study.css" />
+		<style type="text/css">
+			
+			/*#study{
+				color: #DD524D;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <!--<i style="margin-left: 5px; color: #e281c2;" class="iconfont icon-shoucang2"></i>-->
+		    <h1 class="mui-title">学习天地</h1>
+		    <!--<i  style="margin-right: 5px; color: #e281c2;" class="iconfont icon-leimupinleifenleileibie--"></i>-->
+		</header>
+		<div class="mui-content wrap">
+		    <!--轮播组件-->
+	   <!--轮播组件-->
+	    <div class="mui-slider">
+	      <div class="mui-slider-group mui-slider-loop">
+	       <!--<div class="mui-slider-item mui-slider-item-duplicate">
+	           <img src="./images/banner4.jpg" alt="" />
+	        </div>-->
+	        <!--<div class="mui-slider-item">     
+	          <img src="./images/banner1.jpg" alt="" />
+	        </div>-->
+	        <div class="mui-slider-item">
+	           <img src="../images/banner55.jpg" alt="" />
+	        </div>
+	        <!--<div class="mui-slider-item">
+	           <img src="./images/banner5.jpg" alt="" />
+	        </div>
+	        <div class="mui-slider-item">
+	           <img src="./images/banner4.jpg" alt="" />
+	        </div>
+	        <div class="mui-slider-item mui-slider-item-duplicate">     
+	          <img src="./images/banner1.jpg" alt="" />
+	        </div>-->
+	      </div>
+	    </div>
+	    
+	    
+	    <!--学习提示-->
+	    <div class="reminder">
+	    	<!--<span>学习温馨提示：</span>-->
+	    	<p>
+	    		<i class="iconfont icon-laba"></i>
+	    		
+	    		跟随孩子一起学习，效率会更高额
+	    	</p>
+	    </div>
+	    <!--识字识物开始分类-->
+	    <div class="kind">
+	    	<!--fruits-->
+	    	<div class="fruits">
+	    		<span>水果之家</span>
+	    		<div>
+	    				<img src="../images/shuiguo.png" alt="" />
+	    		</div>
+	    	</div>
+	    	<div class="fruits">
+	    		<span>动物世界</span>
+	    		<div>
+	    			<img src="../images/dongwu.jpg" alt="" />
+	    		</div>
+	    	</div>
+	    	<div class="fruits">
+	    		<span>杂货店</span>
+	    		<div>
+	    			<img src="../images/jiaju.png" alt="" />
+	    		</div>
+	    	</div>
+	    	<div class="fruits">
+	    		<span>家具</span>
+	    		<div>
+	    			<img src="../images/study/4.jpg" alt="" />
+	    		</div>
+	    	</div>
+	    	<!--<div class="fruits">
+	    		<span>汉字</span>
+	    		<div>
+	    			<img src="images/study/5.jpg" alt="" />
+	    		</div>
+	    	</div>
+	    	<div class="fruits">
+	    		<span>数字</span>
+	    		<div>
+	    			<img src="images/study/6.jpg" alt="" />
+	    		</div>
+	    	</div>
+	    	<div class="fruits">
+	    		<span>拼音</span>
+	    		<div>
+	    			<img src="images/study/7.jpg" alt="" />
+	    		</div>
+	    	</div>-->
+	    </div>
+		</div>
+		
+		
+		
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			 	mui.init({
+					preloadPages:[{
+					  'url':'articleDetail11.html',
+					  'id':'articleDetail11.html'
+						    }],
+					
+					})
+		</script>
+		
+		
+	</body>
+
+</html>
+
+<script>
+	
+	
+	
+	
+	 mui.plusReady(function(){
+    //获得slider插件对象
+    var gallery = mui('.mui-slider');
+        gallery.slider({
+  	    interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+});
+
+
+	var fruits = document.getElementsByClassName('fruits');
+	
+	console.log(fruits);
+	
+	for(var i  = 0;i<fruits.length;i++){
+		fruits[i].addEventListener('tap',function(){
+			
+				mui.openWindow({
+			    url:'subpages/articleDetail11.html',
+			    id:'articleDetail11.html',
+			    styles:{
+			    
+			    },
+			   
+			 })
+		})
+	}
+	
+
+
+</script>

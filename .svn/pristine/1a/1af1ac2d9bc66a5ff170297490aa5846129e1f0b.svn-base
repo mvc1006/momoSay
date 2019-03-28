@@ -1,0 +1,96 @@
+body{
+    background: #FFFFFF;
+}
+.wrap{
+      max-width:1080px;
+    /*height: 300px;*/
+    margin: 0 auto;
+    padding-top: 20px;
+    background: #FFFFFF;
+    padding-bottom: 50px;
+    
+    .article{
+        width: 95%;
+        padding-bottom: 10px;
+        height: 180px;
+       background: #F3F5F7;
+        margin: 0 auto;
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        .title{
+                width: 250px;
+                height: 20px;
+//              background: darkgray;
+                font-size: 16px;
+                 font-weight: 900;
+                overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+               
+            
+            
+        }
+        .cen{
+            width: 95%;
+            height: 100px;
+            background: white;
+            padding: 0px 10px;
+            margin: 0 auto;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            .des{
+                 display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 3;
+                overflow: hidden;
+                font-size: 14px;
+                color:#999999; 
+               
+            }
+            
+            .img{
+                  
+//              width: 100px;
+                height: 90px;
+              
+//              background: silver;
+                margin-left: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                 img{
+                    width: 100%;
+//                  height: 100%;
+             
+                 }
+            
+            }
+           
+     
+        }
+        
+        .date{
+            width: 250px;
+            height: 20px;
+ background: #FFFFFF;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+           
+           
+           span{
+               display: block;
+               width: 100px;
+              height: 20px;
+//             background: seashell;
+               font-size: 14px;
+           }
+        }
+    }
+}

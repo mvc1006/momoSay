@@ -1,0 +1,42 @@
+
+.wrap{
+    width: 95%;
+    margin: 20px auto;
+    background: #FFFFFF;
+    .banner{
+        img{
+            width: 100%;
+        }
+    }
+    
+    .jq22-container{
+        width: 100%;
+        height: 50px;
+
+          background: #fdfafc;
+
+         border-radius: 5px;
+//      text-align: left;
+//      line-height: 50px;
+        padding:0 10px;
+        margin: 10px auto;
+    }
+    
+    .kind{
+        margin-top: 10px;
+        
+        ul{
+            width: 100%;
+            position: relative;
+            border:none;
+            li{
+                height: 80px;
+               
+                display: flex;
+                align-items: center;
+                position: relative;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_guxtm2ss6mt.css" />
+		<link rel="stylesheet" href="./css/momSay.css" />
+		<style type="text/css">
+			
+			/*#momSay{
+				color: #DD524D;
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		
+		<div class="mui-content wrap">
+		    <!--文章或者视屏-->
+		    <div class="article" num="1" style="margin-top: 0px;">
+		    	<p class="title">怎样培养孩子主动去学习？聪明妈妈都在用的5个方法</p>
+		    	<div class="mui-row cen">
+		    		
+		    		<div class="des mui-col-xs-8">优秀的孩子都是自觉主动学习的孩子。让孩子学会自主学习，
+		    			是培养其在社会竞争中立于不败之地的关键。孩子主动学习，父母也不用再花时间去监督了，那
+		    			么如何培养呢？</div>
+		    		<div class="img mui-col-xs-4">
+		    			<img src="./images/momArticleList/1/1.png" alt="" />
+		    		</div>
+		    	</div>
+		    	<!--<p class="date">
+		    		<span>作者： 陈鹏菲</span>
+		    		<span>2018-02-15</span>
+		    	</p>-->
+		    </div>
+		    
+		    <div class="article" num="2">
+		    	<p class="title">孩子不主动学习怎么办？六个方法，教会孩子养成主动学习的习惯！</p>
+		    	<div class="mui-row cen">
+		    		
+		    		<div class="des mui-col-xs-8">孩子的自制能力都很差，要希望孩子主动学习，只有一个办法，就是让他对所学的内容产生兴趣。</div>
+		    		<div class="img mui-col-xs-4">
+		    			<img src="./images/momArticleList/2/1.jpeg" alt="" />
+		    		</div>
+		    	</div>
+		    	<!--<p class="date">
+		    		<span>作者： 陈鹏菲</span>
+		    		<span>2018-02-15</span>
+		    	</p>-->
+		    </div>
+		  
+		</div>
+
+	</body>
+
+</html>
+<script>
+	var article = document.querySelectorAll('.article');
+	
+	for(var i = 0;i<article.length;i++){
+	
+		article[i].addEventListener('tap',function(){
+	
+				console.log(this.getAttribute('num'));
+				
+				var num = this.getAttribute('num');
+			mui.openWindow({
+				url:'./subpages/article/'+num+'.html',
+				id:num+'.html'
+			})
+		})
+	}
+	console.log(article);
+</script>

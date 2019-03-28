@@ -1,0 +1,46 @@
+.wrap{
+    max-width: 1080px;
+//  height: 500px;
+    height: auto;
+    background: gold;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    
+    .img{
+        width: 95%;
+        margin: 15px auto;
+        img{
+            width: 100%;
+        }
+    }
+    
+    
+    .listimg{
+        width: 95%;
+        height: auto;
+        padding-bottom: 50px;
+        background: darkgreen;
+        margin: 0 auto;
+        .imgbox{
+            width: 100%;
+            height: 160px;
+            background: darkkhaki;
+            margin-top: 10px;
+//          margin: 10px;
+            padding: 10px 0px;
+            display: flex;
+            align-items: center;
+            justify-content:space-around;
+            .eachimg{
+//              width: 160px;
+               height: 100%;
+                background: darkgreen;
+            }
+        }
+    }
+    
+    
+     
+}
+
+

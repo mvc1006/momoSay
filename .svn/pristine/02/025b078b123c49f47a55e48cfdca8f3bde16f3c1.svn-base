@@ -1,0 +1,289 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_8lr32bnljxt.css" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_817562_hn0s26g1i5.css" />
+		
+		<link rel="stylesheet" href="./css/homeSet1.css" />
+		<style type="text/css">
+			/*body{
+				background: #fdfafc;
+			}*/
+		</style>
+		<!--<script src="js/jquery-3.1.1.min.js"></script>-->
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init({
+				//预加载详情页
+				preloadPages: [
+				{
+					'url': 'setting.html',//b页面url路径
+					'id': 'setting.html'//b页面id
+				},
+				{
+					 'url':'./subpages/babyMes.html',
+					'id': './subpages/babyMes.html'//b页面id
+				},
+				{
+					 'url':'./subpages/vip.html',
+					'id': './subpages/vip.html'//b页面id
+				},
+				],
+				swipeBack:true //启用右滑关闭功能
+			})
+		</script>
+	</body>
+	<header class="mui-bar mui-bar-nav">
+	    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+	    <i id="setting" style="margin-left: 5px; color: #e281c2;" class="iconfont icon-shezhi4"></i>
+	    <h1 class="mui-title">我的</h1>
+	    <i style="margin-right: 5px; color: #e281c2;"  class="iconfont icon-kefu1" id="loginByWX"></i>
+	</header>
+
+	<div class="mui-content wrap">
+	    <div class="pic">
+	    	<div id="reset"  class="box">
+	    		<div  id="userImg" class="touxiang">
+	    			<i class="iconfont icon-ico_compile"></i>
+	    			<img id="img" src="" alt="" />
+	    		</div>
+	    		<div class="nikename">
+		    		<p>昵称：<span id="nikename"></span></p>
+		    		<p>性别：<span id="sex"></span></p>
+	    		</div>
+	    	</div>
+	    	
+	    	<i id="huiyuan" class="iconfont icon-huiyuan2" style="font-size: 18px;"></i>
+	    </div>
+	    
+	    
+	    <div id="baby" class="baby">
+	    	<div  id="vip" class="vip">
+	    		<ul>
+	    			<li>
+	    				<i style="color: #edafd4;font-size: 22px;" class="iconfont icon-huiyuan"></i>
+	    				<span style="margin-left: 10px;">我的会员</span>
+	    			</li>
+	    			
+	    			<li class="iconfont icon-gengduo1"></li>
+	    		</ul>
+	    	</div>
+	    	<div class="vip">
+	    		<ul>
+	    			<li>
+	    				<i style="color: #56e4e6;font-size: 22px;" class="iconfont icon-shoucang"></i>
+	    				<span style="margin-left: 10px;">我的收藏</span>
+	    			</li>
+	    			
+	    			<li class="iconfont icon-gengduo1"></li>
+	    		</ul>
+	    	</div>
+	    	
+	    	<div class="vip">
+	    		<ul>
+	    			<li>
+	    				<i style="color: #64f274;font-size: 22px;" class="iconfont icon-gouwuche"></i>
+	    				<span style="margin-left: 10px;">我的购物车</span>
+	    			</li>
+	    			
+	    			<li class="iconfont icon-gengduo1"></li>
+	    		</ul>
+	    	</div>
+	    	<div class="vip">
+	    		<ul>
+	    			<li>
+	    				<i style="color: #c164f2;font-size: 22px;" class="iconfont icon-goumaibanquan"></i>
+	    				<span style="margin-left: 10px;">已购买课程</span>
+	    			</li>
+	    			
+	    			<li class="iconfont icon-gengduo1"></li>
+	    		</ul>
+	    	</div>
+	    </div>
+	    
+	 
+	</div>
+ 	  
+</html>
+<script>
+	
+window.addEventListener('refresh',function(){
+	
+	
+     location.reload();//父页面仅仅是刷新页面，当然也可以自定义逻辑函数写在里面 
+})
+
+
+	mui.ready(function(){
+		access_token = window.localStorage.getItem('access_token');
+		
+//		alert(access_token);
+
+  	mui.ajax({
+			url:'http://www.internet-web.cn/User/UserInfo',
+			type:'GET',
+			
+			data:{access_token:access_token},
+			success:function(data){			
+				data = JSON.parse(data);
+				
+		
+				var UserId = data.data.UserId;
+				var UserPhone = data.data.UserPhone;
+				var UserAvatar = data.data.UserAvatar;
+				var UserSex = data.data.UserSex;
+				var NickName = data.data.NickName;
+				var IsVip = data.data.IsVip;
+			
+//				alert(UserAvatar);
+//			
+				document.getElementById('img').setAttribute('src',UserAvatar);
+		
+				document.getElementById('nikename').innerText = NickName;
+				
+			
+
+				if(UserSex==0){
+					document.getElementById('sex').innerText = '未设置';
+					
+				}else if(UserSex==1){
+					
+					document.getElementById('sex').innerText = '男';
+				}else{
+					
+					document.getElementById('sex').innerText = '女';
+				}
+				
+				
+				
+				
+				if(IsVip==1){
+					
+					document.getElementById('huiyuan').style.color = '#f3d45c';
+				}else{
+					document.getElementById('huiyuan').style.color = '#666666';
+				}
+				
+				
+				
+				
+			}
+		});
+		
+	
+	});
+
+</script>
+<script type="text/javascript">
+	document.getElementById('setting').addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'setting.html',
+		    id:'setting.html',
+		    styles:{
+		    
+		    },
+		   
+		})
+	});
+	
+	document.getElementById('huiyuan').addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'./subpages/vip.html',
+		    id:'./subpages/vip.html',
+		    styles:{
+		    
+		    },
+		   
+		})
+	});
+	document.getElementById('reset').addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'./subpages/babyMes.html',
+		    id:'babyMes.html',
+		    styles:{
+		    
+		    },
+		   
+		})
+	});
+	
+	
+	document.getElementById('vip').addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'./subpages/vip.html',
+		    id:'vip.html',
+		    styles:{
+		    
+		    },
+		   
+		})
+	});
+//	
+//	
+//	
+//	document.getElementById('baby').addEventListener('tap',function(){
+//		mui.toast('您现在是免费用户，敬请期待！');
+//	})
+</script>
+
+<script>
+	var auths=null;
+document.getElementById("loginByWX").addEventListener('tap', function() {
+	plus.oauth.getServices( function(services){
+		auths = services;
+		
+		for(var k in auths){
+			console.log(auths[k].id)
+		}
+		//auths解释0QQ 1微信 2微博 3小米，但是不建议使用auths[1]类似的写法，因为各个设备排序不一样，比较坑爹
+		//注意获取使用unionid，此id通用后期的微信端等它会用户共享，（openid完全唯一）
+		//var s = auths[1];
+		var s;
+		for (var i = 0; i < auths.length; i++){
+//用这样的写法指定第三方，参照：
+//[LOG] : xiaomi
+//[LOG] : qq
+//[LOG] : sinaweibo
+//[LOG] : weixin
+ 
+			if (auths[i].id == 'weixin'){
+			 s = auths[i];
+			 break; 
+			}
+		}
+		
+		if(!s.authResult){
+			s.login(function(e){
+				// 获取登录操作结果
+				s.getUserInfo( function(e){
+					console.log( "获取用户信息成功："+JSON.stringify(s.userInfo) );
+					mui.toast('登录成功');
+				}, function(e){
+					console.log( "获取用户信息失败："+e.message+" - "+e.code );
+					mui.toast('获取用户信息失败');
+				} );
+				
+			}, function(e){
+				mui.toast('登录认证失败');
+			});
+		}else{
+			//已经登录认证
+			mui.toast('登录成功');
+		}
+ 
+	}, function(e){
+		console.log( "获取登录失败："+e.message+" - "+e.code );
+		mui.toast('登录认证失败');
+	});
+});
+</script>
+

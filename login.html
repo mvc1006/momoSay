@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_817562_jp5lrqv3797.css"/>
+		<link rel="stylesheet" href="./css/login.css" />
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+		     mui.init({
+			  preloadPages:[
+			    {
+			      url:'register.html',
+			      id:'register.html',
+			      styles:{},//窗口参数
+			      extras:{},//自定义扩展参数
+			      subpages:[{},{}]//预加载页面的子页面
+			    }
+			  ],
+			  preloadLimit:5//预加载窗口数量限制(一旦超出,先进先出)默认不限制
+		});
+		</script>
+		<!--<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">登录</h1>
+		</header>-->
+		<div class="mui-content wrap">
+			<img style="width: 100%;height: 100%; position: absolute;top:0px;opacity:0.1;" src="./images/bgLogin.jpg" alt="" />
+		    <div class="content">
+				<form class="mui-input-group" style="margin-bottom: 80px;">
+				    <div class="mui-input-row">
+				        <!--<label>用户名</label>-->
+				        <i class="iconfont icon-shouji" style="font-size: 22px;margin-top: -5px;"></i>
+				    	<input id="name" type="text" class="mui-input-clear" placeholder="请输入您的手机号">
+				    </div>
+				    <br />
+				    <div class="mui-input-row">
+				        <!--<label>密码</label>-->
+				         <i class="iconfont icon-suozi" style="font-size: 22px;margin-top: -5px;"></i>
+				        <input id="password" type="password" class="mui-input-password" placeholder="请输入密码">
+				    </div>
+				    <div class="mui-button-row">
+				        <!--<button type="button" class="mui-btn mui-btn-primary" >确认</button>
+				        <button type="button" class="mui-btn mui-btn-danger" >取消</button>-->
+				          <button id="submit" type="button" class="mui-btn mui-btn-danger">登录</button>
+				        
+				    </div>
+				  
+				    
+				</form>
+				
+				<button id="transform" style="margin-top: -10px;">若无账号点击此处注册</button>
+				
+				 
+		    </div>
+		</div>
+	</body>
+
+</html>
+<script>
+	mui.plusReady(function(){
+		
+		if(localStorage.getItem('access_token')==null){
+			
+				mui.ajax({
+					url:'http://www.internet-web.cn/oauth/token',
+					type:'POST',
+					data:{grant_type:'client_credential',appid:'AOQHAKjBwcQA',appsecret:'XxK9mWcqjEWnWy48/0tDRg'},
+					success:function(data){
+					data  = JSON.parse(data);
+					var access_token = data.data.access_token;
+					
+					    localStorage.setItem("access_token",access_token);
+						}
+					  })
+				  
+		}else{
+					
+			mui.ajax({
+					url:'http://www.internet-web.cn/oauth/checktoken',
+				    async: false,
+					type:'POST',
+					
+					data:{access_token:access_token},
+					success:function(data){
+						data = JSON.parse(data);
+						var isLogin = data.errcode;
+						if(isLogin==40005){
+	
+							mui.ajax({
+								url:'http://www.internet-web.cn/oauth/token',
+								type:'POST',
+								data:{grant_type:'client_credential',appid:'AOQHAKjBwcQA',appsecret:'XxK9mWcqjEWnWy48/0tDRg'},
+								success:function(data){
+								data  = JSON.parse(data);
+								var access_token = data.data.access_token;
+								
+								    localStorage.setItem("access_token",access_token);
+									}
+								  })
+							   }
+							
+						}
+						
+					})
+					
+				
+		}
+	 })
+	
+</script>
+<script>
+document.getElementById('transform').addEventListener('tap',function(){
+	mui.openWindow({
+		    url:'register.html',
+		    id:'register.html',
+		});
+})
+</script>
+
+<script>
+	
+	var btn = document.getElementById('submit');
+	btn.addEventListener('tap',function(){
+		var  name = document.getElementById('name');
+		var password = document.getElementById('password');
+		if(name.value==''||password.value==''){
+			mui.alert('用户名或密码不能为空', '温馨提示', function() {
+//		 	  mui.toast('你刚关闭了警告框');
+			},'div');
+		}else {
+			//判断手机号码格式
+			var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+            if (!myreg.test(name.value)) {          	
+					mui.alert('请输入正确手机号格式', '温馨提示', function() {				
+					},'div');
+                return false;          	
+           } else {		
+			 //   用户输入无误  提交服务器
+			 mui.ajax({
+	            	url:'http://www.internet-web.cn/User/Login',
+	            	type:'POST',		            	
+	            	data:{
+	            		access_token:window.localStorage.getItem('access_token'),
+	            		phone:name.value,
+	            		pass:password.value
+	            	},			            	
+	            	dataType:'json',
+	            	success:function(data){		            		
+		            if(data.errcode==0){
+		            	//跳转到主页
+	                 	mui.alert('登录成功', '温馨提示', function() {
+							mui.openWindow({
+								    url:'index.html',
+								    id:'index.html',						   
+								})
+								},'div'); 												    
+						}
+						else {										
+							mui.alert(data.errmsg,'错误提示',function(){											
+								},'div');										
+						}								
+	            		}
+			        })
+                return true;
+            };
+            
+           
+		}
+		
+
+	});
+		
+	//   返回时直接退出应用
+	var first = null;
+    mui.back = function() {
+        //首次按键，提示‘再按一次退出应用’
+        if (!first) {
+            first = new Date().getTime();
+            mui.toast('再按一次退出应用');
+            setTimeout(function() {
+                first = null;
+            }, 1000);
+        } else {
+            if (new Date().getTime() - first < 1000) {
+                plus.runtime.quit();
+            }
+        }
+    };
+</script>

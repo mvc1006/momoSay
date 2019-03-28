@@ -1,0 +1,421 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mobile-select.css" />
+		
+		<script src="../js/mobile-select.js"></script>
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<style>
+			*{
+				font-size: 16px;
+				color: #666666;
+				font-family: "微软雅黑";
+				!important;
+			}
+			
+			
+			
+			form{
+				margin-top: 20px;
+				
+			}
+		.mui-input-row{
+		
+			letter-spacing: 1px;
+			/*background: darkcyan;*/
+			display: flex;
+			align-items: center;
+			padding: 25px 0;
+			
+			
+		}
+		
+		input{
+		
+			font-size: 16px;
+			color: #666666;
+			font-family: "微软雅黑";
+			/*margin-top: 5px;*/
+			background: darkgoldenrod;
+		}
+		
+		.btnBox{
+			 position: absolute;
+	        bottom: 20px;
+	        width: 100%;
+	        height: 50px;
+		}
+		
+		.btn1{
+		
+			 width: 95%;
+          height: 50px;
+          /*background: salmon;*/
+          /*color: white;*/
+          font-size: 16px;
+          border-radius: 5px;
+          display: block;       
+          margin: 0 auto;
+          /*margin-top: 180px;*/
+          /*margin-bottom: 20px;*/
+		}
+		</style>
+	</head>
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			 mui.init({
+			    beforeback: function(){
+			        //获得列表界面的webview
+			         var list = plus.webview.currentWebview().opener();//这种方式也可以
+			         //目标页面
+//			         var list = plus.webview.getWebviewById('homeSet.html');  
+			         //触发列表界面的自定义事件（refresh）,从而进行数据刷新  
+			         mui.fire(list, 'refresh');  
+			        //返回true，继续页面关闭逻辑
+			        return true;
+			    }
+			});
+
+		</script>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 class="mui-title">编辑资料</h1>
+		</header>
+		
+		<div  class="mui-content wrap">
+		    <form class="mui-input-group">
+			    <div id="userImg" class="mui-input-row" style="height: 60px;">
+			        <label>宝宝头像：</label>
+			      	<div class="touxiang" style="width: 50px; height: 50px;">		    			
+		    			<img id="headimg" src="" style="width: 100%;height:100%;margin-left: 30px;" />
+	    			</div>
+			    </div>
+			     <div class="mui-input-row">
+			        <label>宝宝昵称：</label>
+			        <input id="nikename" type="text" class="mui-input-clear">
+			    </div>
+			     <div class="mui-input-row">
+			        <label>宝宝生日：</label>
+			        <!--<input type="text" class="mui-input-clear" >-->
+			        <div id="trigger2">请选择出生年月</div>
+			    </div>
+			     <div class="mui-input-row">
+			        <label>宝宝性别：</label>
+			        <span style="display: flex;align-items: center;">
+			        	 <input id="nan" type="radio" name="sex" id="" value="1" />&nbsp&nbsp男
+			        </span>
+			        
+			       <span style="margin-left: 35px;display: flex;align-items: center;">
+			       	 <input id="nv" type="radio" name="sex" id="" value="2" />&nbsp&nbsp女
+			       </span>
+			       
+			       
+			    </div>
+			</form>
+			
+			<div class="btnBox">
+				<button id="Confirm" type="button" class="mui-btn mui-btn-danger mui-btn-outlined btn1">确认保存</button>
+			</div>
+			
+		</div>
+	</body>
+
+</html>
+<script>		
+	
+	mui.ready(function(){
+			
+		mui.ajax({
+			url:'http://www.internet-web.cn/User/UserInfo',
+			type:'GET',
+			
+			data:{access_token:window.localStorage.getItem('access_token')},
+			success:function(data){			
+				data = JSON.parse(data);
+//				alert(data);
+
+				var UserId = data.data.UserId;
+				var UserPhone = data.data.UserPhone;
+				var UserAvatar = data.data.UserAvatar;
+				var UserSex = data.data.UserSex;
+				var NickName = data.data.NickName;
+				var IsVip = data.data.IsVip;
+				var Birth = data.data.Birth;
+				
+//				alert(UserSex);
+//			
+				document.getElementById('headimg').setAttribute('src',UserAvatar);
+		
+				document.getElementById('nikename').value = NickName;
+				
+				
+//				document.getElementById('trigger2').innerText = Birth;
+				
+
+				if(UserSex==0){
+					document.getElementById('sex').innerText = '未设置';
+				
+					
+				}else if(UserSex==1){
+						document.getElementById('nan').checked  = true;
+					
+				}else{
+					
+					document.getElementById('nv').checked  = true;
+				}
+					
+			}
+		});
+	})
+
+</script>
+<script type="text/javascript">
+	
+	$(function () {
+    //探测手机屏幕宽度   并赋值给wrap
+    // $('#wrap').height(document.body.clientHeight);
+    // $('#wrap').height($(window).height());
+    console.log(document.body.clientHeight);
+//    检测小键盘的弹出    隐藏底部dom
+
+    var winHeight = $(window).height();
+    $('#wrap').height(winHeight);
+    console.log(winHeight);
+    $(window).resize(function(){
+        var thisHeight=$(this).height();
+        if(winHeight - thisHeight >50){
+            //当软键盘弹出，在这里面操作
+
+            $('#Confirm').hide();
+        }else{
+            //当软键盘收起，在此处操作
+            $('#Confirm').show();
+        }
+    });
+});
+	
+	//
+	  // //===================设置年份数据====================
+	  var date = new Date();
+	  	var fullyear = date.getFullYear();
+	  console.log(fullyear);
+    var yearData = new Array(fullyear+1);
+    for(var i=0;i<yearData.length;i++){
+
+        yearData[i] = i+'年';
+
+    }
+    
+    var timeArr = ['01 月','02 月','03 月','04 月','05 月','06 月','07 月','08 月','09 月','10 月','11 月','12 月'];
+    
+    
+      //===================选择出生年月日====================
+    var mobileSelect2 = new MobileSelect({
+        trigger: '#trigger2',
+        title: '选择出生年月',
+        wheels: [
+            {data: yearData},
+            {data: timeArr}
+        ],
+        position:[2016,5],
+        transitionEnd:function(indexArr, data){
+            console.log(data);
+        },
+        callback:function(indexArr, data){
+            console.log(data);
+        }
+
+
+    });
+
+    var time = 0; 
+  document.getElementById('Confirm').addEventListener('tap',function(){
+  	//				alert($('input[name="sex"]:checked ').val());
+		if($('#nikename').val()==''||$('input[name="sex"]:checked ').val()=='undefined'||$('#trigger2').text().length==7){
+			   mui.alert('填写完成才能提交哦...', '温馨提示', function() {
+//                  info.innerText = '你刚关闭了警告框';
+
+
+                },'div');
+		}else{
+			
+			 nikename  =$('#nikename').val();
+			
+			 sex  =  $('input[name="sex"]:checked ').val();
+			
+			var birth = $('#trigger2').text()+'01日';
+			
+			 birth1 = birth.trim();
+			
+//			alert(birth1);
+		
+			upload();	
+			
+		
+			    var access_token = window.localStorage.getItem('access_token');
+			
+//					alert(access_token);
+			
+//		   mui.ajax({
+//				
+//				url:'http://www.internet-web.cn/User/UserInfoUpdate',
+//				type:'POST',
+//				async:false,
+//				data:{
+//					access_token:'jLCRNvVAnKo8QXdENCjtoExMDDo',
+//					nickname:nikename,
+//					sex:sex,
+//					birth:birth,
+//					head:uploadurl
+//				},
+//				success:function(data){
+//					mui.toast('保存成功！');
+//				}
+//			});
+			
+		
+			
+
+		}
+	
+
+  	
+  	
+  })
+  
+
+  
+</script>
+
+   <script>  
+    function plusReady(){  
+        mui("body").on("tap","#userImg",function(){  
+            page.imgUp();  
+        })  
+    }  
+    
+    //修改用户信息
+//  var ajxurl = "http://www.internet-web.cn/User/UserInfoUpdate";
+//  function test(){
+//  
+//       mui.post(ajxurl,{access_token:'jLCRNvVAnKo8QXdENCjtoExMDDo',nickname:,sex:'1',birth:'2018-01-01',head:uploadurl},function(data){
+//       	mui.alert('修改成功')
+//       },'json');
+//
+//  }
+    
+    
+    var page=null;  
+    page=
+    {
+        imgUp:function()
+        {
+            var m=this;  
+            plus.nativeUI.actionSheet({cancel:"取消",
+            buttons:[
+                {title:"拍照"},  
+                {title:"从相册中选择"}  
+            ]}, 
+            function(e){//1 是拍照  2 从相册中选择
+                switch(e.index){  
+                    case 1:appendByCamera();break;  
+                    case 2:appendByGallery();break;  
+                }  
+            });  
+        }  
+    }  
+    //1.拍照添加文件
+    function appendByCamera(){
+        plus.camera.getCamera().captureImage(function(e){
+            console.log(e);
+            plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+            var path = entry.toLocalURL(); 
+            document.getElementById("headimg").src = path; 
+            }, function(e) { 
+                mui.toast("读取拍照文件错误：" + e.message); 
+            }); 
+        });    
+    }
+    //2.从相册添加文件
+    function appendByGallery(){
+        plus.gallery.pick(function(path){
+            document.getElementById("headimg").src = path; 
+        });
+    }
+    
+    //服务端接口路径
+    var server = "http://www.internet-web.cn/media/upload";
+    //获取图片元素
+    var files = document.getElementById('headimg');
+    var uploadurl="";
+    // 上传文件
+    function upload()
+    {
+        console.log(files.src);
+        var wt=plus.nativeUI.showWaiting();
+        var task=plus.uploader.createUpload
+        (server,{method:"POST"},
+            function(t,status){ 
+                if(status==200){
+                	var code = JSON.parse(t.responseText).errcode;
+//                	   mui.alert(code);
+//                	   mui.alert(t.responseText.data);
+                  	   if(code == '41008'){
+                  	  var  	ddd='';
+                  	  
+//                	   	 mui.alert(1111);
+                  	   	   var ajxurl2 = "http://www.internet-web.cn/User/UserInfoUpdate";
+                  	   	 mui.post(ajxurl2,{access_token:window.localStorage.getItem('access_token'),nickname:nikename,sex:sex,birth:birth1,head:ddd},function(data){
+		                 	mui.toast('修改成功')
+		                 	mui.back();
+		                 },'json');
+                  	   }else{
+                  	   	
+                  	   	uploadurl=JSON.parse(t.responseText).data[0];
+                  	   	    //修改用户信息
+		            var ajxurl = "http://www.internet-web.cn/User/UserInfoUpdate";
+//		            mui.alert(uploadurl);
+		                setTimeout(function(){
+		                	
+		                 mui.post(ajxurl,{access_token:window.localStorage.getItem('access_token'),nickname:nikename,sex:sex,birth:birth1,head:uploadurl},function(data){
+		                 	mui.toast('修改成功')
+		                 	mui.back();
+		                 },'json');
+		                },500);
+		                 
+                  	   }
+                	
+                	
+                 
+             
+		
+		         	
+                    wt.close(); //关闭等待提示按钮
+                }else{
+                    alert("上传失败："+status);
+                    wt.close();//关闭等待提示按钮
+                }
+            }
+        );
+        //添加其他参数
+        task.addData("access_token",window.localStorage.getItem('access_token'));
+        task.addFile(files.src,{key:"dddd"});
+        task.start();
+    }  
+    if(window.plus){  
+        plusReady();  
+    }else{  
+        document.addEventListener("plusready",plusReady,false);  
+    }       
+    
+	
+
+</script>  

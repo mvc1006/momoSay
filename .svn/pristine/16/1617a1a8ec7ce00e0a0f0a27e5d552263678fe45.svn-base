@@ -1,0 +1,220 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_v34fxlm07h.css" />
+		<link rel="stylesheet" href="./css/study.css" />
+		<style type="text/css">
+			
+			/*#study{
+				color: #DD524D;
+			}*/
+			
+			.fruits{
+				position: relative;
+			}
+			
+			.suo{
+				width: 45px;
+				position: absolute;
+				top: 65px;
+				right: 30px;
+			}
+		</style>
+		<script src="js/jquery-3.1.1.min.js"></script>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+		    <i style="margin-left: 5px; color: #e281c2;" class="iconfont icon-shoucang2"></i>
+		    <h1 class="mui-title">学习天地</h1>
+		    <i  style="margin-right: 5px; color: #e281c2;" class="iconfont icon-leimupinleifenleileibie--"></i>
+		</header>
+		<div class="mui-content wrap">
+		    <!--轮播组件-->
+	   <!--轮播组件-->
+	    <div class="mui-slider">
+	      <div class="mui-slider-group mui-slider-loop">
+	       <!--<div class="mui-slider-item mui-slider-item-duplicate">
+	           <img src="./images/banner4.jpg" alt="" />
+	        </div>-->
+	        <!--<div class="mui-slider-item">     
+	          <img src="./images/banner1.jpg" alt="" />
+	        </div>-->
+	        <div class="mui-slider-item">
+	           <img id="listBanner" src="./images/banner/banner55.jpg" alt="" />
+	        </div>
+	        <!--<div class="mui-slider-item">
+	           <img src="./images/banner5.jpg" alt="" />
+	        </div>
+	        <div class="mui-slider-item">
+	           <img src="./images/banner4.jpg" alt="" />
+	        </div>
+	        <div class="mui-slider-item mui-slider-item-duplicate">     
+	          <img src="./images/banner1.jpg" alt="" />
+	        </div>-->
+	      </div>
+	    </div>
+	    
+	    
+	    <!--学习提示-->
+	    <div class="reminder">
+	    	<!--<span>学习温馨提示：</span>-->
+	    	<p>
+	    		<i class="iconfont icon-laba"></i>
+	    		
+	    		<span id="listMsg"></span>
+	    	</p>
+	    </div>
+	    <!--识字识物开始分类-->
+	    <div id="kind" class="kind">
+	    	<!--fruits-->
+	    	<!--<div class="fruits">
+	    		<span>水果之家</span>
+	    		<div>
+	    				<img src="images/syudydb/shuiguo.png" alt="" />
+	    		</div>
+	    	</div>-->
+	    	
+	    	
+	    </div>
+		</div>
+		
+		
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			 	mui.init({
+					preloadPages:[{
+					  'url':'./subpages/articleDetail11.html',
+					  'id':'articleDetail11.html'
+						    }],
+					
+					})
+		</script>
+		
+		
+	</body>
+
+</html>
+<script>
+	
+	mui.plusReady(function(){
+		
+		var access_token = localStorage.getItem("access_token");//取回students变量
+		mui.ajax({
+			url      : 'http://www.internet-web.cn/Images/ImageMain',
+            type     : 'GET',
+            data:{access_token:access_token},
+			success:function(data){
+				data = JSON.parse(data);
+				
+				
+				
+				
+				var listBanner = data.data.listBanner[0].ImgUrl;
+				var listMsg = data.data.listMsg[0].Msg;
+//				mui.toast(listMsg);
+				document.getElementById('listBanner').setAttribute('src',listBanner);
+				document.getElementById('listMsg').innerText = listMsg;
+				
+				var listCate = data.data.listCate;
+				
+				for(var i =0;i<listCate.length;i++){
+					
+					
+					var  idd = listCate[i].ID;				
+					var Name = listCate[i].Name;
+					var Url = listCate[i].Url;
+					var IsLock = listCate[i].IsLock;
+					
+					var html =
+					'<div id="fruits'+i+'" class="fruits">'+
+						'<input id="input1" type="text" value="'+Name+'" hidden>'+
+						'<input id="input2" type="text" value="'+idd+'" hidden>'+
+						'<input id="IsLock" type="text" value="'+IsLock+'" hidden>'+
+						'<img id="suo" class="suo" src="./images/suo.png" alt="" /  style="display:none;">'+
+						'<span>'+Name+'</span>'+
+						'<div>'+
+								'<img id="img" src="'+Url+'" alt="" />'+
+						'</div>'+
+					'</div>'
+
+					
+//					document.getElementById('kind').innerHTML = html;
+					
+					$('#kind').append(html);
+					
+					if($('#fruits'+i+'').find('#IsLock').val()==1){
+						
+						$('#fruits'+i+'').find('#img').css({'opacity':'.2'});
+						$('#fruits'+i+'').find('#suo').css({'display':'block'});
+						
+										
+						}
+					
+					
+
+						
+					document.getElementById('fruits'+i+'').addEventListener('tap',function(){
+						var name = $(this).find('#input1').val();
+						var cateId = $(this).find('#input2').val();
+						var IsLock = $(this).find('#IsLock').val();
+
+						if(IsLock==1){
+							mui.toast('开通会员享受更多学习乐趣~');
+
+//							var src = $(this).find('#img').attr('src',''); 
+//							mui.toast(src);
+							document.getElementById('fruits'+i+'').off();
+							
+						}
+//							mui.toast(IsLock)
+							mui.openWindow({
+								url:'subpages/articleDetail11.html',
+								extras:{'name':name,'cateId':cateId}
+								
+							
+							})
+					})
+					
+					
+					
+
+
+					
+				}
+			}
+		})
+	})
+</script>
+
+<script>
+	
+	
+	
+	
+	 mui.plusReady(function(){
+    //获得slider插件对象
+    var gallery = mui('.mui-slider');
+        gallery.slider({
+  	    interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+});
+
+
+	// var fruits = document.getElementsByClassName('fruits');
+	
+	// console.log(fruits);
+	
+
+	
+
+
+</script>

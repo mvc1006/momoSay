@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_817562_4xlfo63b013.css" />
+		<link rel="stylesheet" href="../css/storyList.css" />
+		<link rel="stylesheet" href="../css/reset.css" />
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<style>
+			.mui-control-content {
+				background-color: white;
+				min-height: 500px;
+			}
+			.mui-control-content .mui-loading {
+				margin-top: 50px;
+			}
+			.mui-slider-indicator{
+				height: 50px;
+			
+			}
+			
+			.mui-segmented-control .mui-control-item{
+				line-height: 45px;
+			}
+			
+			.mui-segmented-control{
+				border:none
+			}
+			.mui-segmented-control .mui-control-item.mui-active{
+				background: #e281c2;
+			}
+			.mui-segmented-control .mui-control-item{
+				border: none;
+				color: #666666;
+			}
+			
+			
+			.info{
+				width: 98%;
+				margin: 10px auto;
+			}
+			.info>img{
+				width: 100%;
+			}
+			
+			
+			/*.mui-control-content{
+			height: calc(100vh - 100px);
+			}*/
+		</style>
+	</head>
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		
+		<header class="mui-bar mui-bar-nav">
+		   	<p>
+		   		 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		   	</p>
+		    <h1 class="mui-title"></h1>
+		    <p>
+		    	<i class="iconfont icon-fenxiang1" onclick="shareHref();"></i>
+		    </p>
+		</header>
+		<div class="mui-content" style="padding-top:0px">
+		    <div class="banner">
+		    	<img id="banner" src="" alt="" />
+		    </div>
+		    
+		    <div class="top">
+		    	<p id="title" class="title"></p>
+		    	<p id="littleDes" class="littleDes"></p>
+		    	<ul>
+		    		<li>发布时间：<span id="time"></span>  </li>
+		    		<li>订阅量：<span id="read"></span> </li>
+		    	</ul>
+		    </div>
+		      <!-- 隐藏数据 -->    
+			  <div style="display: none;">
+			  	  <p>链接地址：</p>
+		            <input id="sharehref"  type="url" value="" />
+		            <p>链接标题：</p>
+		            <input id="sharehrefTitle"  type="text" value="title" />
+		            <p>链接描述：</p>
+		            <input id="sharehrefDes"  type="text" value="test"/>
+		            
+		            <!--<button type="button" onclick="shareHref()"> 分享链接</button>-->
+			  </div>
+          
+		   	<div class="slider">
+		   		<div style="padding: 10px 10px;">
+				<div id="segmentedControl" class="mui-segmented-control">
+					<!--<a class="mui-control-item mui-active" href="#item1">待办公文（8）</a>-->
+					<a class="mui-control-item mui-active" href="#item2">故事介绍</a>
+					<a class="mui-control-item" href="#item3">故事选集</a>
+				</div>
+				
+			</div>
+			<div>
+			
+				<div id="item2" class="mui-control-content mui-active" style="padding-bottom: 10px;">
+					
+				</div>
+				<div id="item3" class="mui-control-content" style="min-height: 85px;">
+					 <!--<div class="detailsClass mui-row">
+						<div class="img mui-col-xs-4 mui-col-sm-7">
+							<img src="../images/9999.jpg" alt="" />
+						</div>
+						<div class="right mui-col-xs-7 mui-col-sm-7">
+							<p>第一集的名称</p>
+							<ul>
+								<li>时长：5:00</li>
+								<li>
+									<i class="iconfont icon-biaoshilei_jianting"></i>
+								</li>
+							</ul>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript">
+//	mui.ready(function(){
+		
+		mui.plusReady(function(){
+		    var sData = plus.webview.currentWebview();
+		  	var idd = sData.idd;
+//		  	mui.toast(idd);
+	 access_token = localStorage.getItem("access_token");//取回students变量	  	
+	mui.ajax({
+			url:'http://www.internet-web.cn/Story/StoryBigInfo',
+			type:'GET',
+			data:{access_token:access_token, StoryId :idd},
+			success:function(data){
+				
+				data = JSON.parse(data);
+				
+		
+				
+				var Name = data.data.storyObj.Name;
+				var Desp = data.data.storyObj.Desp;
+				var BigImg = data.data.storyObj.BigImg;
+				
+				var SubUser = data.data.storyObj.SubUser;
+				var CreateTime = data.data.storyObj.CreateTime;
+				
+
+				document.getElementById('title').innerText  = Name;
+				document.getElementById('littleDes').innerText  = Desp;
+				document.getElementById('read').innerText  = SubUser;
+				document.getElementById('time').innerText  = CreateTime;
+				document.getElementById('banner').setAttribute('src',BigImg);
+			
+				
+				var imgList = data.data.imgList;
+				for(var i =  0;i<imgList.length;i++){
+					
+					var ImgUrl = imgList[i].ImgUrl;
+					
+					var html1 = 
+					'<div class="info" style="width:95%;margin:3px auto;">'+
+						'<img  style="border-radius:2px" src="'+ImgUrl+'" />'+
+					'</div>'
+					
+					$('#item2').append(html1);
+				}
+				
+				
+				// section  two
+				var detailList = data.data.detailList;
+				for(var i =  0;i<detailList.length;i++){
+					
+					var ID = detailList[i].ID;
+					var Name = detailList[i].Name;
+					var SubImg = detailList[i].SubImg;
+					var Mp3Url = detailList[i].Mp3Url;
+					var TimeLong = detailList[i].TimeLong;
+					
+					
+					var html2 = 
+					'<div id="detailsClass'+i+'" class="detailsClass mui-row">'+
+						'<input id="input" type="text" hidden  value="'+ID+'">'+
+						'<div class="img mui-col-xs-4 mui-col-sm-7">'+
+							'<img src="'+SubImg+'" alt="" />'+
+						'</div>'+
+						'<div class="right mui-col-xs-7 mui-col-sm-7">'+
+							'<p>'+Name+'</p>'+
+							'<ul>'+
+								'<li>时长：<span>'+TimeLong+'</span></li>'+
+								'<li>'+
+									'<i class="iconfont icon-biaoshilei_jianting"></i>'+
+								'</li>'+
+							'</ul>'+
+						'</div>'+
+					'</div> '
+
+					
+					$('#item3').append(html2);
+					
+					document.getElementById('detailsClass'+i+'').addEventListener('tap',function(){
+							var id = $(this).find('#input').val();
+							mui.openWindow({
+								url:'storyPlay.html',
+								extras: {'idd':id},
+								
+							})
+						});
+				}
+				
+			}
+		})
+		  	
+		});
+
+//	})
+</script>
+<script>
+	mui.init({
+		swipeBack: true //启用右滑关闭功能
+	});
+	(function($) {
+		$('#scroll').scroll({
+			indicators: true //是否显示滚动条
+		});
+		var segmentedControl = document.getElementById('segmentedControl');
+		$('.mui-input-group').on('change', 'input', function() {
+			if (this.checked) {
+				var styleEl = document.querySelector('input[name="style"]:checked');
+				var colorEl = document.querySelector('input[name="color"]:checked');
+				if (styleEl && colorEl) {
+					var style = styleEl.value;
+					var color = colorEl.value;
+					segmentedControl.className = 'mui-segmented-control' + (style ? (' mui-segmented-control-' + style) : '') + ' mui-segmented-control-' + color;
+				}
+			}
+		});
+	})(mui);
+</script>
+<script type="text/javascript" charset="utf-8">
+      
+        var shares=null;
+        var Intent=null,File=null,Uri=null,main=null;
+        // H5 plus事件处理
+        function plusReady(){
+            updateSerivces();
+            if(plus.os.name=="Android"){
+                main = plus.android.runtimeMainActivity();
+                Intent = plus.android.importClass("android.content.Intent");
+                File = plus.android.importClass("java.io.File");
+                Uri = plus.android.importClass("android.net.Uri");
+            }
+        }
+        if(window.plus){
+            plusReady();
+        }else{
+            document.addEventListener("plusready",plusReady,false);
+        }
+        
+        /**
+         * 
+         * 更新分享服务
+         */
+        function updateSerivces(){
+            plus.share.getServices( function(s){
+                shares={};
+                for(var i in s){
+                    var t=s[i];
+                    shares[t.id]=t;
+                }
+            }, function(e){
+                alert("获取分享服务列表失败："+e.message );
+            } );
+        }
+        
+        
+        
+        /**
+           * 分享操作
+           * @param {JSON} sb 分享操作对象s.s为分享通道对象(plus.share.ShareService)
+           * @param {Boolean} bh 是否分享链接
+           */
+        function shareAction(sb,bh) {
+            if(!sb||!sb.s){
+//              alert("无效的分享服务！");
+                return;
+            }
+            
+            var msg={content:sharehrefDes.value,extra:{scene:sb.x}};
+            if(bh){
+                msg.href=sharehref.value;
+                if(sharehrefTitle&&sharehrefTitle.value!=""){
+                    msg.title=sharehrefTitle.value;
+                }
+                if(sharehrefDes&&sharehrefDes.value!=""){
+                    msg.content=sharehrefDes.value;
+                }
+                msg.thumbs=['../images/caimogu.png'];
+                msg.pictures=['../images/caimogu.png'];
+            }else{
+                if(pic&&pic.realUrl){
+                    msg.pictures=[pic.realUrl];
+                }
+            }
+            // 发送分享
+            if ( sb.s.authenticated ) {
+//              alert("---已授权---");
+                shareMessage(msg,sb.s);
+            } else {
+//              alert("---未授权---");
+                sb.s.authorize( function(){
+                        shareMessage(msg,sb.s);
+                    },function(e){
+//                      alert("认证授权失败："+e.code+" - "+e.message );
+                    
+                });
+            }
+        }
+        /**
+           * 发送分享消息
+           * @param {JSON} msg
+           * @param {plus.share.ShareService} s
+           */
+        function shareMessage(msg,s){
+            
+//          alert(JSON.stringify(msg));
+            s.send( msg, function(){
+//              alert("分享到\""+s.description+"\"成功！ " );
+                
+            }, function(e){
+//              alert( "分享到\""+s.description+"\"失败: "+JSON.stringify(e) );
+            
+            } );
+        }
+        // 分析链接
+        function shareHref(){
+            var shareBts=[];
+            // 更新分享列表
+            var ss=shares['weixin'];
+            ss&&ss.nativeClient&&(shareBts.push({title:'微信朋友圈',s:ss,x:'WXSceneTimeline'}),
+            shareBts.push({title:'微信好友',s:ss,x:'WXSceneSession'}));
+            ss=shares['qq'];
+            ss&&ss.nativeClient&&shareBts.push({title:'QQ',s:ss});
+            // 弹出分享列表
+            shareBts.length>0?plus.nativeUI.actionSheet({title:'分享链接',cancel:'取消',buttons:shareBts},function(e){
+                (e.index>0)&&shareAction(shareBts[e.index-1],true);
+            }):plus.nativeUI.alert('当前环境无法支持分享链接操作!');
+        }
+        
+</script>

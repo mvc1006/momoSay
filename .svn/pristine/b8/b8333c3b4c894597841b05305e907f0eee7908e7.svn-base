@@ -1,0 +1,30 @@
+html{
+    background: #f0eff4;
+};
+
+.mui-table-view{
+        li{
+            img{
+            width: 65px;
+         } 
+        }
+       
+    }
+.box{
+    width: 95%;
+//  height: 500px;
+    background: #fdfafc;
+    border-radius: 5px;
+    padding: 20px 3px;
+    
+    margin: 20px auto;
+    
+    
+   
+    .grid__item{
+        img{
+            border-radius: 5px;
+        }
+    }
+    
+}

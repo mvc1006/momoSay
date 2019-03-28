@@ -1,0 +1,194 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_v34fxlm07h.css" />
+		<link rel="stylesheet" href="./css/song.css" />
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<style type="text/css">
+			
+			/*#study{
+				color: #DD524D;
+			}*/
+		</style>
+	
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <!--<i class="iconfont icon-shoucang2"></i>-->
+		    <h1 class="mui-title">儿歌童谣</h1>
+		    <!--<i class="iconfont icon-leimupinleifenleileibie--"></i>-->
+		</header>
+		<div class="mui-content wrap">
+		
+	    	<div class="banner">
+	    		<img id="banner" src="" alt="" />
+	    	</div>
+	    <!--学习提示-->
+	    <!--<div class="reminder">
+	    	<div class="fenlei">
+	    		<button type="button" class="mui-btn mui-btn-blue">黑猫警长</button>				 
+				<button type="button" class="mui-btn mui-btn-success">金刚葫芦娃</button>
+				<button type="button" class="mui-btn mui-btn-warning">喜洋洋</button>
+				<button type="button" class="mui-btn mui-btn-danger">哪吒传奇</button>
+				<button type="button" class="mui-btn mui-btn-royal">齐大大圣</button> 
+				<button type="button" class="mui-btn mui-btn-success">金刚葫芦娃</button>
+				<button type="button" class="mui-btn mui-btn-warning">喜洋洋</button>
+		
+	    	</div>
+	    </div>-->
+	    <!--识字识物开始分类-->
+	    <div class="kind">
+	    	<div class="songKinds">
+	    		<div id="demo" class="demo">
+	    			
+	    		
+	    		</div>
+	    	</div>	
+	    	
+	    	
+		
+	    </div>
+	    </div>
+		</div>
+		
+		
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			 	mui.init({
+					preloadPages:[{
+					  'url':'./subpages/articleDetail11.html',
+					  'id':'articleDetail11.html'
+						    }],
+					
+					})
+		</script>
+		
+		
+	</body>
+
+</html>
+
+<script>
+
+	mui.plusReady(function(){
+		 var access_token = localStorage.getItem("access_token");//取回students变量
+		mui.ajax({
+			url:'http://www.internet-web.cn/Music/MusicMain',
+			type:'GET',
+			data:{'access_token':access_token},
+			success:function(data){
+
+				data = JSON.parse(data);
+
+				var banner = data.data.bannerList[0].ImgUrl;
+				
+				document.getElementById('banner').setAttribute('src',banner);
+				
+				var musicList = data.data.musicList;
+				var musicListLength = data.data.musicList.length;
+				
+//				mui.toast(musicListLength);
+				
+				if(musicListLength % 2 ==0){
+					hang();
+					return false;
+				}else{
+					musicListLength++;
+					// mui.toast(musicListLength);
+					hang();
+				}
+				
+				
+				function hang(){
+						
+					for(var i = 0;i<musicListLength/2;i++){
+
+						var ID = musicList[i*2].ID;						
+						var SubImg = musicList[i*2].SubImg;				
+						var Title = musicList[i*2].Title;
+						var ID1 = musicList[i*2+1].ID;
+						var SubImg1 = musicList[i*2+1].SubImg;				
+						var Title1 = musicList[i*2+1].Title;
+
+					var musicHtml = 
+
+							'<div class="hang mui-row">'+
+								'<div id ="eachSong'+ID+'" class="mui-col-xs-6 mui-col-sm-6 ">'+
+									'<input id="input" type="text" hidden  value="'+ID+'">'+
+									'<img src="'+SubImg+'" alt="" />'+
+									'<p>'+Title+'</p>'+
+								'</div>'+
+								'<div id ="eachSong1'+ID1+'" class="mui-col-xs-6 mui-col-sm-6 eachSong">'+
+									'<input id="input1" type="text" value="'+ID1+'" hidden>'+
+									'<img src="'+SubImg1+'" alt="" />'+
+									'<p>'+Title1+'</p>'+
+								'</div>'+
+							'</div>';
+
+
+							$('#demo').append(musicHtml);
+
+							//-----传递歌曲ID
+							document.getElementById('eachSong'+ID+'').addEventListener('tap',function(){
+								var id = $(this).find(input).val();
+								mui.openWindow({
+									url:'subpages/musicplay.html',
+									extras: {'idd':id},
+									
+								})
+							});
+							
+							
+							document.getElementById('eachSong1'+ID1+'').addEventListener('tap',function(){
+								var id = $(this).find(input1).val();
+								mui.openWindow({
+									url:'subpages/musicplay.html',
+									extras: {'idd':id},
+									
+								})
+							});
+							
+						}
+					
+
+					
+				}
+				
+				
+				
+				
+			}
+		})
+	})
+
+</script>
+
+<script>
+	
+//	var i = 1;
+//	document.getElementById('play').addEventListener('tap',function(){
+//		
+//			mui.openWindow({
+//			    url:'subpages/play.html',
+//			    id:'play.html',
+//			    styles:{
+//			    
+//			    },
+//			   
+//			 })
+//	})
+
+
+	
+
+
+</script>

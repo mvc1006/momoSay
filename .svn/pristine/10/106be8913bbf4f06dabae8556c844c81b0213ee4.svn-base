@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/reset.css" />
+		<link rel="stylesheet" href="../css/vip.css" />
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<style type="text/css">
+			
+		</style>
+	</head>
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <p style="width: 30px;height: 30px;background: rgba(0,0,0,.5);border-radius: 50%;display: flex;align-items: center;justify-content: center;margin: 13px; margin-left: 5px;"><a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a></p>
+		    <h1 class="mui-title"></h1>
+		</header>
+		<div class="mui-content">
+		    <div class="header">
+		    	<div class="cen">
+		    		
+		    		<div>
+		    			<img src="../images/9999.jpg" alt="" />
+		    		</div>
+			    	<ul>
+			    		<li>
+			    			<span>楠木怀瑾</span>
+			    		</li>
+			    		<li>
+			    			您暂且不是会员
+			    		</li>
+			    		
+			    	</ul>
+		    	</div>
+		    </div>
+		</div>
+		
+		
+		<div class="setMeal">
+			<h5 class="mui-content-padded">会员服务</h5>
+			<div class="yearCard">
+				<label for="year">
+					<ul>
+						<li>
+							<span>年费会员(365天)</span>
+							<span>赠送妈妈课程免费七天学习</span>
+						</li>
+						<li>
+							<span>25.00</span>
+							<span>80.00</span>
+						</li>
+						<li>
+							<input id="year" type="radio" checked="checked" name="vip" value="25"/>
+						</li>
+					</ul>
+				</label>
+				
+			</div>
+			<div class="yearCard">
+				<label for="month">
+					<ul>
+						<li>
+							<span>月费会员(30天)</span>
+							<span>赠送妈妈课程免费七天学习</span>
+						</li>
+						<li>
+							<span>5.00</span>
+							<span>16.00</span>
+						</li>
+						<li>
+							<input id="month" type="radio" name="vip" value="5" />
+							<!--<input name="radio" name="vip" type="radio">-->
+						</li>
+					</ul>
+				</label>
+				
+			</div>
+		
+		</div>
+		
+		<div class="payWay">
+			<h5 class="mui-content-padded">支付方式</h5>
+			<label for="wxpay1">			
+				<div class="wxpay">				
+					<div class="left">
+							<div class="img">
+								<img src="../images/wxpay.png" alt="" />
+							</div>
+							<div class="title">
+								<p>微信支付</p>
+								<p>微信安全支付</p>
+							</div>						
+					</div>
+					<input id="wxpay1" type="radio" name="payway"/>
+				</div>
+			</label>
+			
+			<div class="alipay">
+				<label for="alipay1">
+					<div class="left">
+						<div class="img">
+							<img src="../images/alipay.png" alt="" />
+						</div>
+						<div class="title">
+							<p>支付宝支付</p>
+							<p>支付宝安全支付</p>
+						</div>						
+					</div>
+									
+					
+				</label>
+				<input id="alipay1" type="radio" name="payway"/>
+			</div>	
+			
+			
+		</div>
+		
+		
+		<div style="height: 150px;"></div>
+	</body>
+	
+	<nav class="mui-bar mui-bar-tab">
+	   <button id="confirm" class="mui-btn mui-btn-danger" style="font: '微软雅黑'; font-size: 16px; background: #e281c2;border: none;">确认购买</button>
+	</nav>
+
+</html>
+<script>
+	document.getElementById('confirm').addEventListener('tap',function(){
+		
+		console.log($('#month:radio:checked').val());
+		
+		
+		
+		
+	});
+	
+	
+	
+		
+</script>

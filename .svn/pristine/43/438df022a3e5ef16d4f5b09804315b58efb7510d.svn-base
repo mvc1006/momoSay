@@ -1,0 +1,154 @@
+{
+	"index.html": {
+		"refer": [
+			"study.html",
+			"momSay.html",
+			"homeSet.html",
+			"shouye.html",
+			"momSay1.html",
+			"shouye1.html",
+			"homeSet1.html",
+			"login.html"
+		],
+		"resources": [
+			"study.html",
+			"shouye.html",
+			"shouye1.html"
+		]
+	},
+	"study.html": {
+		"refer": [
+			"index.html",
+			"momSay.html",
+			"subpages/articleDetail.html",
+			"subpages/articleDetail11.html"
+		]
+	},
+	"homeSet.html": {
+		"refer": [
+			"subpages/babyMes.html",
+			"setting.html",
+			"subpages/vip.html"
+		]
+	},
+	"shouye.html": {
+		"refer": [
+			"subpages/articleDetail.html",
+			"study.html",
+			"subpages/moreClass.html",
+			"register.html"
+		]
+	},
+	"subpages/moreClass.html": {
+		"refer": [
+			"subpages/articleDetail.html"
+		]
+	},
+	"momSay.html": {
+		"refer": [
+			"subpages/article/1.html",
+			"subpages/article/2.html"
+		]
+	},
+	"register.html": {
+		"refer": [
+			"login.html"
+		]
+	},
+	"momSay1.html": {
+		"refer": [
+			"subpages/articleDetail11.html",
+			"shouye1.html",
+			"study.html",
+			"homeSet1.html"
+		],
+		"resources": [
+			"images/��G.png",
+			"shouye1.html"
+		]
+	},
+	"shouye1.html": {
+		"refer": [
+			"subpages/moreClass.html",
+			"register.html",
+			"shiwen.html",
+			"song.html",
+			"story.html",
+			"login.html",
+			"study.html",
+			"momSay1.html",
+			"homeSet1.html",
+			"subpages/storyPlay.html",
+			"subpages/play.html",
+			"subpages/storyList.html",
+			"subpages/pay.html"
+		],
+		"resources": [
+			"images/banner55.jpg",
+			"study.html",
+			"images/banner2.png",
+			"images/banner1.jpg",
+			"images/banner4.jpg",
+			"js/swiper.min.js",
+			"images/9999.jpg"
+		]
+	},
+	"homeSet1.html": {
+		"refer": [
+			"subpages/babyMes.html",
+			"setting.html"
+		],
+		"resources": [
+			"images/9999.jpg"
+		]
+	},
+	"setting.html": {
+		"refer": [
+			"subpages/babyMes.html",
+			"subpages/feedback.html"
+		]
+	},
+	"login.html": {
+		"refer": [
+			"register.html",
+			"index.html"
+		]
+	},
+	"subpages/articleDetail11.html": {
+		"resources": [
+			"images/Y\u001c�.png"
+		]
+	},
+	"song.html": {
+		"refer": [
+			"subpages/play.html",
+			"subpages/articleDetail11.html"
+		]
+	},
+	"story.html": {
+		"refer": [
+			"subpages/storyList.html",
+			"subpages/articleDetail11.html"
+		]
+	},
+	"shiwen.html": {
+		"refer": [
+			"subpages/articleDetail11.html"
+		]
+	},
+	"subpages/play.html": {
+		"refer": [
+			"subpages/share.html"
+		]
+	},
+	"subpages/storyList.html": {
+		"refer": [
+			"subpages/storyPlay.html"
+		]
+	},
+	"subpages/babyMes.html": {
+		"refer": [
+			"homeSet.html"
+		]
+	}
+}

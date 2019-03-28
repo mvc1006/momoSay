@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_v34fxlm07h.css" />
+		<link rel="stylesheet" href="./css/study.css" />
+		<link rel="stylesheet" href="css/demo.css" />
+		<link rel="stylesheet" href="css/normalize.css" />
+		<script src="js/jquery-3.1.1.min.js"></script>
+		<style type="text/css">
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell{
+				border-bottom: none;
+				border-right: none;
+				
+				/*background: darkcyan;*/
+			
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn){
+				display:inline;
+			}
+			
+			
+			.mui-grid-view.mui-grid-9 .mui-table-view-cell.mui-active{
+				background: #fdfafc;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav" style="display: flex;align-items: center;justify-content: space-between;">
+		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>-->
+		    <i style="margin-left: 5px; color: #e281c2;" class="iconfont icon-shoucang2"></i>
+		    <h1 class="mui-title">学习天地</h1>
+		    <i  style="margin-right: 5px; color: #e281c2;" class="iconfont icon-leimupinleifenleileibie--"></i>
+		</header>
+			<div class="mui-content">
+		        <ul id="listBox" class="mui-table-view mui-grid-view mui-grid-9" style="background: #fdfafc; width: 95%;height:250px;margin: 20px auto;padding:5px;border-radius: 5px;">
+		
+		          
+		        </ul> 
+		        
+		        
+		       	<div class="content box content--center">
+		       		<div style="height: 50px;display: flex;align-items: center;justify-content: space-between;padding-bottom: 0px;padding-top: 0;">	
+		       			<p style="margin-left: 10px;font-size: 16px;color: #666666;">推荐学习</p>
+		       			<p></p>
+		       		</div>
+				<div id="listImgsBox" class="grid grid--type-c">
+					<div class="grid__sizer"></div>
+					<!--<div class="grid__item " style="position: relative;">
+						<a id="item'+j+'" class="grid__link" href="#">
+							<img   class="grid__img" src="images/bdLearn.jpg" />
+						</a>
+						
+						<input id="input" type="text" hidden value="'+ID+'">
+						
+						<img class="audio" id="play'+j+'" style="position: absolute; left: 10px; bottom: 10px;width: 35px;" src="img/play.png" alt="" />
+						
+						
+						<span style="position: absolute;right: 60px; bottom: 12px;color: #00000;font-size: 14px;font-weight:900">大象</span>
+										
+					</div>-->
+					
+				</div>
+		       	</div>
+			</div>
+
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript">
+		 	mui.init({
+				preloadPages:[{
+				  'url':'./subpages/articleDetail22.html',
+				  'id':'articleDetail22.html'
+					    }],
+					    
+//				  pullRefresh: {
+//		                    container: '#listImgsBox',
+//		                    up: {
+//		                         height:50,//可选.默认50.触发上拉加载拖动距离
+//					      auto:true,//可选,默认false.自动上拉加载一次
+//					      contentrefresh : "正在加载...",//可选，正在加载状态时，上拉加载控件上显示的标题内容
+//					      contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+//					      callback :pullfresh-function //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+//		 
+//		                    }
+//		                }
+		
+		
+
+
+				
+				})
+		 	
+		 	
+		 	 function pullupRefresh() {
+                setTimeout(function () {
+                    mui('#listImgsBox').pullRefresh().endPullupToRefresh((true)); //参数为true代表没有更多数据了。
+                   
+                }, 500);
+            }
+
+
+	</script>
+		
+		
+	</body>
+
+</html>
+<script>
+
+	function getdata(){
+		var access_token = localStorage.getItem("access_token");//取回students变量
+		$('#listBox').html('');
+				mui.ajax({
+			url:'http://www.internet-web.cn/Images/ImageMainNew',
+			type:'GET',
+  	    	data:{'access_token':access_token},
+  	    	success:function(data){
+  	    		
+  	    		data = JSON.parse(data);
+  	    		
+//	    		alert(data);
+  	    		var listCate = data.data.listCate;
+  	    		
+  	    		for(var i = 0;i<listCate.length;i++){
+  	    			
+  	    			var ID = listCate[i].ID;
+  	    			var Name = listCate[i].Name;
+  	    			var Url = listCate[i].Url;
+  	    			    Odr = listCate[i].Odr;
+  	    			
+  	    			var listCateHtml = ' <li class="mui-table-view-cell mui-media mui-col-xs-4  mui-active"><a href="#">'+
+							                    '<img src="'+Url+'" alt="" />'+
+							                    '<input type="text" hidden   value="'+ID+'">'+
+							                    '<div class="mui-media-body">'+Name+'</div></a>'+
+							                   
+							            '</li>';
+							            
+				
+							            
+					$('#listBox').append(listCateHtml);
+				
+  	    			
+  	    		}
+  	    		
+  	    			var moreList = '   <li id="Odr" class="mui-table-view-cell mui-media mui-col-xs-4 "><a href="#">'+
+							                    '<span class="mui-icon mui-icon-more"></span>'+
+							                    '<div class="mui-media-body" style="font-size: 12px;color: #666666;">更多分类</div></a>'+
+							                     '<input  type="text" hidden value="'+Odr+'">'+
+							           '</li>'
+  	    			$('#listBox').append(moreList);
+  	    			
+  	    			
+  	    			
+  	    			document.getElementById('Odr').addEventListener('tap',function(){
+  	    				
+  	    				getdata2();
+  	    			});
+  	    			
+  	    			
+  	    				//  ------推荐部分
+    			
+    		
+    			
+    			var listImgs = data.data.listImgs;
+    			for(var j = 0;j<listImgs.length;j++){
+    				
+    				var ID = listImgs[j].ID;
+    				var ImgUrl = listImgs[j].ImgUrl
+    				var ImgName = listImgs[j].ImgName;
+    				var Mp3Url= listImgs[j].Mp3Url;
+    				var ImgCate= listImgs[j].ImgCate;   
+    				var flag= listImgs[j].Flag;   
+//	    				alert(flag);
+	
+    				var listImgsHtml = '<div class="grid__item " style="position: relative;">'+
+											'<a id="item'+j+'" class="grid__link" href="#">'+
+												'<img   class="grid__img" src="'+ImgUrl+'" />'+
+											'</a>'+
+											
+											'<input id="input" type="text" hidden value="'+ID+'">'+
+											
+											'<img class="audio" id="play'+j+'" style="position: absolute; left: 10px; bottom: 10px;width: 35px;" src="img/play.png" alt="" />'+
+											
+											
+											'<span style="position: absolute;right: 60px; bottom: 12px;color: #00000;font-size: 14px;font-weight:900">'+ImgName+'</span>'+
+											'<audio style="display:none;" src="'+Mp3Url+'">'+
+											'<input id="flag" type="text" hidden value="'+flag+'">'+
+											'<input id="cateid" type="text" hidden  value="'+ImgCate+'">'+
+										'</div>';
+    				
+    				
+    				$('#listImgsBox').append(listImgsHtml);
+
+
+					document.getElementById('play'+j+'').addEventListener('tap',function(){
+			
+						$(this).next().next('audio')[0].play();
+					
+//						alert($(this).siblings('span').text());
+						
+						$(this).parent().siblings('.grid__item').children('audio')[0].pause();
+			
+					});
+					
+					
+					document.getElementById('item'+j+'').addEventListener('tap',function(){
+										
+							
+                        mui.openWindow({
+                            url:'./subpages/articleDetail22.html',
+//	                            id:'storyList.html',
+                           
+                         
+							extras: {'is':$(this).parent().find('#input').val(),'flag':$(this).parent().find('#flag').val(),'cateid':$(this).parent().find('#cateid').val()},		
+                       	 })
+             	   });
+				
+					
+    			}
+    			
+    			
+    			
+    				//  ----重新加载main.js   使其双列显示   重载问题
+    				var script =  document.createElement('script');
+    				script.setAttribute('src','js/js/main.js');
+    				
+//  				alert(script.getAttribute('src'));
+    				$('head').append(script);
+  	
+  	    			
+    			
+  	    	}
+  	    	
+  	    	
+  	    	
+		})
+	};
+	
+	
+		function getdata2(){
+		var access_token = localStorage.getItem("access_token");//取回students变量
+		
+		$('#listBox').html('');
+				mui.ajax({
+			url:'http://www.internet-web.cn/Images/ImageCateChange',
+			type:'GET',
+  	    	data:{'access_token':access_token,'Odr':Odr},
+  	    	success:function(data){
+  	    		
+  	    		data = JSON.parse(data);
+  	    		
+//	    		alert(data);
+  	    		var listCate = data.data;
+  	    		
+  	    		for(var i = 0;i<listCate.length;i++){
+  	    			
+  	    			var ID = listCate[i].ID;
+  	    			var Name = listCate[i].Name;
+  	    			var Url = listCate[i].Url;
+  	    		    Odr = listCate[i].Odr;
+  	    			
+  	    			var listCateHtml = ' <li class="mui-table-view-cell mui-media mui-col-xs-4  mui-active"><a href="#">'+
+							                    '<img src="'+Url+'" alt="" />'+
+							                    '<input type="text" hidden   value="'+ID+'">'+
+							                    '<div class="mui-media-body">'+Name+'</div></a>'+
+							                   
+							            '</li>';
+							            
+				
+							            
+					$('#listBox').append(listCateHtml);
+				
+  	    			
+  	    		}
+  	    		
+  	    			var moreList = '   <li id="Odr" class="mui-table-view-cell mui-media mui-col-xs-4 "><a href="#">'+
+							                    '<span class="mui-icon mui-icon-more"></span>'+
+							                    '<div class="mui-media-body" style="font-size: 12px;color: #666666;">更多分类</div></a>'+
+							                     '<input  type="text" hidden value="'+Odr+'">'+
+							           '</li>'
+  	    			$('#listBox').append(moreList);
+  	    			
+  	    			
+  	    				document.getElementById('Odr').addEventListener('tap',function(){
+  	    				
+  	    				getdata2();
+  	    			})			
+  	    	}
+ 	    	
+		})
+	};
+	mui.plusReady(function(){
+		 		 
+		 getdata();
+
+	})
+</script>
+<script src="js/js/imagesloaded.pkgd.min.js"></script>
+<script src="js/js/masonry.pkgd.min.js"></script>
+<script src="js/js/anime.min.js"></script>
+<script src="js/js/main.js"></script>	

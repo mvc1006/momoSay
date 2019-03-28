@@ -1,0 +1,6 @@
+.mui-content .cen {
+  width: 80%;
+  height: 300px;
+  background: darkcyan;
+  margin: 100px auto;
+  margin-bottom: 0px; }

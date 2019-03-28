@@ -1,0 +1,64 @@
+.mui-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.wrap {
+  /*height: 300px;*/
+  margin: 0 auto;
+  padding-top: 1px;
+  background: #FFFFFF;
+  padding-bottom: 30px;
+  font-size: 16px;
+  color: #666666; }
+  .wrap .mui-slider {
+    width: 95%;
+    height: 160px;
+    border-radius: 5px;
+    margin: 20px auto; }
+    .wrap .mui-slider .mui-slider-item {
+      height: 160px; }
+      .wrap .mui-slider .mui-slider-item img {
+        width: 100%;
+        height: 100%; }
+  .wrap .reminder {
+    width: 95%;
+    height: 50px;
+    background: #F3F5F7;
+    background: #fdfafc;
+    padding: 15px 10px;
+    border-radius: 2px;
+    margin: 0 auto; }
+    .wrap .reminder i {
+      font-weight: 600;
+      color: #DD524D;
+      padding-right: 10px; }
+  .wrap .kind {
+    width: 95%;
+    height: auto;
+    margin: 20px auto;
+    border-radius: 10px; }
+    .wrap .kind .fruits {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      padding-bottom: 150px;
+      background: #F3F5F7;
+      background: #fdfafc;
+      border-radius: 5px; }
+      .wrap .kind .fruits span {
+        color: #999999; }
+      .wrap .kind .fruits div {
+        width: 95%;
+        height: 100px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
+        margin: 0 auto;
+        margin-top: 10px; }
+        .wrap .kind .fruits div img {
+          width: 100%;
+          height: 100%; }
+
+/*# sourceMappingURL=study.css.map */

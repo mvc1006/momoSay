@@ -1,0 +1,306 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/swiper.css" />
+		<link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_817562_4uoqfz5zg1u.css"/>
+		<script src="../js/jquery-3.1.1.min.js"></script>
+		<script src="../js/swiper.min.js"></script>
+		<style type="text/css">
+			
+			
+			.bdLearn{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				opacity: .5;
+				/*z-index: 10000;*/
+			}
+			
+			
+			.wrap{
+				max-width: 1080px;
+				margin: 0 auto;
+				position: relative;
+				background: transparent;
+				
+			}
+			.swiper-container{
+				width: 90%;
+				/*height: 800px;*/
+				/*background: #F3F5F7;*/
+				/*margin: 100px auto;*/
+				
+			
+			}
+			
+		
+			
+		
+			
+			.swiper-slide{
+			
+				/*background: rgba(0,0,0,#e281c2);*/
+				/*background: #;*/
+				margin: 0 auto;
+				padding-bottom: 100px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-around;
+				
+			}
+			
+		
+			
+			.imgban{
+				width: 65%;
+				height: auto;
+/*				height: 300px;*/
+				/*background: darkcyan;*/
+				margin: 50px auto;
+				margin-bottom: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				
+				
+			}
+			.imgban>img{
+				width: 100%;
+				border-radius: 5px;
+				/*height: 100%;*/
+				margin-bottom: 50px;
+			}
+			
+			.title{
+				width: 100%;
+				height: 100%;
+			
+				/*background: #DCDCDC;*/
+				margin: 0 auto;
+				padding: 30px 0px;
+				display: flex;
+				align-items: center;
+				justify-content: space-around;
+			}
+			
+			.title>i{
+				font-size: 50px;
+				/*color: firebrick;*/
+				color: darkorange;
+			}
+			
+			
+			
+			.title>.bofang>img{
+				width: 50px;
+				/*height: 100%;*/
+			}
+			
+			.swiper-button-prev{
+				width: 30px;
+				height: 30px;
+				background: #81cbd8;
+				border-radius: 50%;
+				background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size:15px 15px;
+				
+				margin-top: 200px;
+				margin-left: 180px;
+			}
+			
+			.swiper-button-next{
+				width: 30px;
+				height: 30px;
+				background: #81cbd8;
+				border-radius: 50%;
+				background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23ffffff'%2F%3E%3C%2Fsvg%3E");
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size:15px 15px;
+				
+				margin-top: 200px;
+				margin-right: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<img class="bdLearn" src="../images/bdLearn.jpg" alt="" />
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		    <h1 id="name" class="mui-title">获取到的标题</h1>
+		</header>
+		<div class="mui-content wrap">
+		   <!-- Swiper -->
+		  	<div id="wrap" class="swiper-container">
+				<div id="swiper-wrapper"  class="swiper-wrapper">
+				    <!--<div class="swiper-slide">
+					  	<div class="imgban">
+					  		<img src="../images/9999.jpg" alt="" />
+					  		<div class="title">
+						   	  
+						   		<i class="iconfont icon-laba2"></i>
+					  			<h4>苹果</h4>
+					  			
+					  		</div>
+					  	</div>				   
+					</div>-->
+					<audio id="sds" src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/res/poem/2info/mp3/zengwanglun.mp3"></audio>
+					<!--<div id="play" style="width: 100px;height: 100px;background: darkcyan;">play</div>
+					<br />
+					
+					<div id="pause" style="width: 100px;height: 100px;background: darkcyan;margin-left: 20px;">pause</div>-->
+			    </div>	
+			   
+			</div>
+			
+		</div>
+		
+	
+	</body>
+    
+</html>
+
+<script type="text/javascript">
+	mui.plusReady(function(){
+		
+		var access_token = window.localStorage.getItem('access_token');
+		var sData = plus.webview.currentWebview();
+		 idd = sData.dddddd;
+//	    sData = JSON.stringify(sData);
+	
+		Name = sData.name;
+		$('#name').text(Name);
+	
+		mui.ajax({
+			url:'http://www.internet-web.cn/poem/PoemGetByCateGory',
+			type     : 'GET',
+            data:{access_token:access_token, id: idd},
+            success:function(data){
+
+            	data = JSON.parse(data);
+            	
+            	var imgList = data.data;
+            	
+            	for(var i =0;i<imgList.length;i++){
+            		
+            		var ImgUrl = imgList[i].ImgUrl;
+            		var Name = imgList[i].Name;
+            		var Mp3Url = imgList[i].Mp3Url;
+            		
+		
+					
+					var swiper = 
+							' <div class="swiper-slide">'+
+								'<div class="imgban">'+
+									'<img src="'+ImgUrl+'" />'+
+									'<div class="title">'+
+									
+										'<i id="play'+i+'" class="iconfont icon-laba2"></i>'+
+										'<audio id="audio" src="'+Mp3Url+'" style="display:none;"></audio>'+
+										'<h4>'+Name+'</h4>'+
+									'</div>'+
+								'</div>'+			   
+							 '</div>';
+					
+						$('#swiper-wrapper').append(swiper);
+					
+					var swiperButton = 
+							'<div class="swiper-button-next"></div>'+
+		    				'<div class="swiper-button-prev"></div>';
+						//---播放MP3
+					
+					$('#wrap').append(swiperButton);
+						
+						$('#play'+i+'').click(function(){
+							
+							$(this).next('audio')[0].play();
+
+						})
+
+//						var swiper = new Swiper('.swiper-container', {
+//								effect: 'cube',
+//								effect: 'flip',
+//								
+//								grabCursor: true,
+//								centeredSlides: true,
+//								slidesPerView: 'auto',
+//								coverflowEffect: {
+//									rotate: 80,
+//									stretch: 0,
+//									depth: 100,
+//									modifier: 1,
+//									slideShadows : true,
+//								},
+//								pagination: {
+//									el: '.swiper-pagination',
+//								},
+//								loop:true
+//								
+//								});
+
+						 var swiper = new Swiper('.swiper-container', {
+						      navigation: {
+						        nextEl: '.swiper-button-next',
+						        prevEl: '.swiper-button-prev',
+						      },
+//						      loop:true
+							  on: {
+								slideChangeTransitionEnd: function(){
+//							 	 alert(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+
+//								var Mp3Url1 = imgList[this.activeIndex].Mp3Url;
+//								$('#sds').attr('src',Mp3Url1);
+//								$('#sds')[0].play();
+								var oldNum = window.localStorage.getItem('num');
+								
+								if(oldNum>this.activeIndex){
+//							
+									
+									 $('#play'+(this.activeIndex+1)).next('audio')[0].pause();
+								}else if(oldNum<this.activeIndex){
+//							
+									$('#play'+(this.activeIndex-1)).next('audio')[0].pause();
+								}
+								
+								 window.localStorage.setItem('num',JSON.stringify(this.activeIndex));
+//								
+							 
+							    },
+							  },
+						      
+						    });
+            		
+            	}
+            }
+		})
+	})
+</script>
+<script>
+	
+	
+	
+var winHeight = $(window).height()-50;
+    $('#wrap').height(winHeight);
+    console.log(winHeight);
+	
+
+
+	
+
+</script>

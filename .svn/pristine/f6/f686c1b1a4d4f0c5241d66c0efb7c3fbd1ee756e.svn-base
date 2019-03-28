@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/shouye1.css" />
+  	<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_l3avnzji1lh.css" />
+    <link rel="stylesheet" href="css/swiper-4.1.0.min.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init({
+	    preloadPages:[{
+	      'url':'./subpages/moreClass.html',
+	      'id':'./subpages/moreClass.html'
+	    },
+	    {
+		  'url':'./subpages/pay.html',
+		   'id':'pay.html'
+	    },
+	    
+	    {
+		 'url':'shiwen.html',
+		   'id':'shiwen.html'
+	    },
+	     {
+		  'url':'story.html',
+		   'id':'story.html'
+	    },
+	    {
+		  'url':'song.html',
+		   'id':'song.html'
+	    },
+	    
+	    {
+		  'url':'subpages/play.html',
+		   'id':'play.html',
+		   extras: {'idd':1},
+	    }
+	  
+	    ],
+
+})
+    </script>
+    <style type="text/css">
+  		body{background: #FFFFFF;}
+    </style>
+</head>
+<body>
+
+	<div class="mui-content wrap">    
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+			  <div class="swiper-slide" data-hash="slide1">
+			  
+			  	 <img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/banner/banner1.jpg" alt="" />
+			  </div>
+			  <div class="swiper-slide" data-hash="slide1">
+			  	 <img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/banner/banner2.png" alt="" />
+			  </div>
+			   <div class="swiper-slide" data-hash="slide1">
+			  	 <img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/banner/banner55.jpg" alt="" />
+			  </div>
+			   <div class="swiper-slide" data-hash="slide1">
+			  	 <img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/banner/qiu.jpg" alt="" />
+			  </div>
+			</div>
+		</div>
+	    
+
+	   <!--首推分类-->
+	    <div class="shoutui mui-row">
+	    	<div id="hanzi" class="mui-col-xs-3 mui-col-sm-3">
+	    		<!--<i class="mui-icon iconfont icon-xuexi2" style="color: #7452f3;"></i>-->
+	    		<img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/shouye/study.png" alt="" />
+	    		<span style="margin-left: 2px;">学习</span>
+	    	</div>
+	    	<div id="shiwen" class="mui-col-xs-3 mui-col-sm-3">
+	    		<!--<i  class="mui-icon iconfont icon-shici1" style="color: #2be1a3;"></i>-->
+	    		<img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/shouye/shiwen.png" alt="" />
+	    		<span>诗文</span>
+	    	</div class="mui-col-xs-3 mui-col-sm-3"> 
+	    	<div  id="song" class="mui-col-xs-3 mui-col-sm-3">
+	    		<!--<i class="mui-icon iconfont icon-yinyue-copy" style="color: #FFAF00;"></i>-->
+	    		<img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/shouye/yinyue.png" alt="" />
+	    		<span>儿歌</span>
+	    	</div>
+	    	<div id="story" class="mui-col-xs-3 mui-col-sm-3">
+	    		<!--<i class="mui-icon iconfont icon-gushi_huaban1" style="color: #f42307;"></i>-->
+	    		<img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/shouye/gushi.png" alt="" />
+	    		<span>小故事</span>
+	    	</div>
+	    </div>
+	    
+	    
+	    <!--精彩预售-->
+	    <div id="yushou" class="yushou">
+	    	<img src="http://cpftest.oss-cn-beijing.aliyuncs.com/momSay/10.png" alt="" />
+	    </div>
+
+	    <!--宝妈知道-->
+	      <div id="newclass" class="newclass">
+		    	<div id="song1" class="title">
+		    		<h4>音乐故事会</h4>
+		    		<!--<a style="color: #666666;font-weight: 400;" href=""><i class="iconfont icon-gengduo1"></i></a>-->
+		    		<a style="color: #999999;font-weight: 400; font-size: 14px;" href="">查看更多</a>		    		
+		    	</div>				    
+	  	  </div>
+    	    
+	    <!--新的课程-->
+	    <div id="pick" class="pick">
+	    	<div id="study1" class="title">
+	    		<h4>甄选课堂</h4>
+	    		<!--<a style="color: #666666;font-weight: 400;" href=""><i class="iconfont icon-gengduo1"></i></a>-->
+	    		<a style="color: #999999;font-weight: 400; font-size: 14px;" href="">查看更多</a>
+	    	</div>  
+	</div>
+	
+	
+</body>
+</html>
+<script>
+	mui.plusReady(function(){
+
+        mui.ajax({
+            url      : 'http://www.internet-web.cn/Main/MainPage',
+            type     : 'GET',
+            data:{access_token:window.localStorage.getItem('access_token')},
+            success  : function(data){
+              
+				data = JSON.parse(data);
+				
+			// 音乐故事会~~~~~~~~~~~~~~~
+                var musiclist = data.data.musiclist;
+              
+              for(var i = 0;i<musiclist.length;i++){
+              	
+              	var SubImg = musiclist[i].SubImg;
+              	var Title = musiclist[i].Title;
+              	var Desp = musiclist[i].Desp;
+				//   订阅量
+              	var LookNum = musiclist[i].LookNum;
+              	var SourceUrl = musiclist[i].SourceUrl;
+				var PubTime = musiclist[i].PubTime;  
+              	var ID = musiclist[i].ID;
+              	
+				var  html = $(
+					
+				'<div id="tale'+i+'" class="tale mui-row">'+
+						'<input id="input" type="text" hidden  value="'+ID+'">'+
+			    		'<div class="fenmian mui-col-xs-4 mui-col-sm-4">'+
+			    			'<img src="'+SubImg+'"/>'+
+			    		'</div>'+
+			    		'<div class="des mui-col-xs-7 mui-col-sm-7">'+
+			    			'<h5 class="taleTitle">'+Title+'</h5>'+
+			    			'<span class="jieshao">简介：'+Desp+'	</span>'+
+			    			'<ul>'+
+			    				
+		    					'<li>'+
+		    						'<span>上传时间：</span>'+
+		    						'<span class="yuanjia">'+	    							
+		    							'<i></i>'+
+		    						'</span>'+
+		    						'<span></span>'+
+		    					'</li>'+
+		    					'<li>'+
+			    					'<span>订阅量：</span>'+
+			    					'<span>'+LookNum+'</span>'+
+			    				'</li>'+
+			    			'</ul>'+
+			    		'</div>'+
+		    		'</div>	  ');
+
+			
+					 $('#newclass').append(html);
+				
+				document.getElementById('tale'+i+'').addEventListener('tap',function(){
+
+				var id = $(this).find(input).val();
+						
+					mui.openWindow({
+							url:'subpages/musicplay.html',
+							extras: {'idd':id},		         			
+						})
+								
+				});
+	              	
+              }
+
+			//   ------甄选课堂知识-------------
+
+			var courselist = data.data.courselist;
+
+			for(var j =0;j<courselist.length;j++ ){
+				var SubImg = courselist[j].SubImg;
+				var Title = courselist[j].Title;
+				var Desp = courselist[j].Desp;
+				var OldPrice = courselist[j].OldPrice;
+				var NewPrice = courselist[j].NewPrice;
+				var SubUser = courselist[j].SubUser;
+				
+
+				var html1 = $(
+
+					'<div id="each'+j+'" class="each mui-row">'+
+						'<div class="img mui-col-xs-4 mui-col-sm-4">'+
+							'<img src="'+SubImg+'" alt="" />'+
+						'</div>'+
+						'<div class="details mui-col-xs-7 mui-col-sm-7">'+
+							'<h5>'+Title+'</h5>'+
+							'<p>简介：'+Desp+'</p>'+
+							'<ul>'+
+								'<li>'+
+									'<p>价格：<span>￥'+NewPrice+'</span></p>'+
+								'</li>'+
+								'<li>'+
+									'<p>订阅量：<span>'+SubUser+'</span></p>'+
+								'</li>'+
+							'</ul>		    				'+
+						'</div>		    			'+
+					'</div>	');
+
+
+				$('#pick').append(html1);
+				
+				document.getElementById('each'+j+'').addEventListener('tap',function(){
+					  mui.openWindow({
+                            url:'./subpages/storyList.html',
+                            id:'storyList.html'
+
+                        })
+				});
+
+
+
+			}
+                           
+            },
+            error    : function(xhr,type,errorThrown){
+                mui.toast(type);
+            }
+        });
+        
+   
+});
+</script>
+<script type="text/javascript">
+ mui.plusReady(function(){
+    //获得slider插件对象
+    var gallery = mui('.mui-slider');
+        gallery.slider({
+  	    interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+});
+
+</script>
+<script>
+	  var swiper1 = new Swiper('.swiper-container1', {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      // init: false,
+     
+      loop:true
+    
+   });
+    
+
+    var swiper = new Swiper('.swiper-container', {
+     	  pagination: '.swiper-pagination',
+     	   spaceBetween: 5,
+            paginationClickable: true,
+            speed: 500,
+            loop: true,
+            observer:true,
+            observeParents:true,
+            autoplayDisableOnInteraction : false,
+            autoplay:3000
+
+    
+      
+     
+    });
+</script>
+
+<script type="text/javascript">
+	
+	
+	
+		document.getElementById('shiwen').addEventListener('tap',function(){
+			mui.openWindow({
+			    url:'shiwen.html',
+			    id:'shiwen.html',
+			    styles:{
+			    	
+			    },
+			   
+			 })
+		});
+		
+		
+		document.getElementById('yushou').addEventListener('tap',function(){
+			mui.openWindow({
+			    url:'./subpages/pay.html',
+			    id:'pay.html',
+			    styles:{
+			    	
+			    },
+			   
+			 })
+		});
+		
+		
+	document.getElementById('song').addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'song.html',
+		    id:'song.html',
+		    styles:{
+		    
+		    },
+		   
+			 })
+		});
+		
+		
+		
+			document.getElementById('story').addEventListener('tap',function(){
+		mui.openWindow({
+		    url:'story.html',
+		    id:'story.html',
+		    styles:{
+		    
+		    },
+		   
+			 })
+		});
+		
+		
+		
+	document.getElementById('song1').addEventListener('tap',function(){
+
+		console.log(111);
+	 	mui.openWindow({
+			    url:'song.html',
+			    id:'song.html',
+			    styles:{
+			    
+			    },
+			   
+			 })
+
+
+
+	});
+	
+
+	
+	
+	
+	//模拟点击的调用  调用在index 中自定义的方法   
+	document.getElementById("study1").addEventListener('tap',function () {
+			//获得主页面的webview
+			var main = plus.webview.currentWebview().parent();
+			//触发主页面的gohome事件
+			mui.fire(main,'gomomSay1');
+		});
+		
+		
+
+		
+		document.getElementById('hanzi').addEventListener('tap',function(){
+			//获得主页面的webview
+			var main = plus.webview.currentWebview().parent();
+			//触发主页面的gohome事件
+			mui.fire(main,'gostudy');
+	});
+	
+//	document.getElementById('title').addEventListener('tap',function(){
+//			//获得主页面的webview
+//			var main = plus.webview.currentWebview().parent();
+//			//触发主页面的gohome事件
+//			mui.fire(main,'gostudy');
+//	});
+			
+</script>
+

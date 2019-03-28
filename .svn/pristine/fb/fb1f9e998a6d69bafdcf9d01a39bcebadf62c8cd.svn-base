@@ -1,0 +1,88 @@
+.mui-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.wrap {
+  /*height: 300px;*/
+  margin: 20px auto;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  position: relative;
+  font-size: 16px;
+  border: none; }
+  .wrap .pic {
+    width: 95%;
+    height: 120px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 0 5%;
+    padding-left: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .wrap .pic .box {
+      height: 110px;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between; }
+      .wrap .pic .box .touxiang {
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        background: transparent;
+        position: relative;
+        margin-right: 6px;
+        margin-left: 5px; }
+        .wrap .pic .box .touxiang i {
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          color: #fabf40;
+          font-size: 14px; }
+        .wrap .pic .box .touxiang img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          display: block;
+          margin: 0 auto; }
+      .wrap .pic .box .nikename {
+        width: 140px;
+        height: 60px;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-left: 10px; }
+        .wrap .pic .box .nikename p {
+          width: 140px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis; }
+    .wrap .pic i {
+      font-size: 20px; }
+  .wrap .baby {
+    width: 95%;
+    margin: 10px auto;
+    background: #FFFFFF;
+    border-radius: 5px; }
+    .wrap .baby .vip {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid #e7e7e7; }
+      .wrap .baby .vip ul {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 20px; }
+        .wrap .baby .vip ul li {
+          font-size: 16px;
+          color: #333333; }
+
+/*# sourceMappingURL=homeSet1.css.map */

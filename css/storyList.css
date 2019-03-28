@@ -1,0 +1,105 @@
+.mui-bar-nav {
+  position: absolute;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 13px 0px  13px;
+  background: salmon;
+  background: transparent;
+  border: none;
+  box-shadow: none; }
+  .mui-bar-nav p {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .mui-bar-nav p a {
+      color: #FFFFFF;
+      font-weight: 200; }
+    .mui-bar-nav p i {
+      color: #FFFFFF;
+      font-size: 20px;
+      font-weight: 600; }
+
+.mui-content {
+  max-width: 1080px;
+  margin: 0 auto; }
+  .mui-content .banner {
+    width: 100%;
+    height: 200px; }
+    .mui-content .banner img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      margin: 0 auto; }
+  .mui-content .top {
+    width: 100%;
+    height: auto;
+    background: white;
+    padding: 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    line-height: 30px; }
+    .mui-content .top p {
+      font-size: 14px; }
+    .mui-content .top .title {
+      color: #333333;
+      font-size: 16px;
+      font-weight: 900; }
+    .mui-content .top .littleDes {
+      color: #666666; }
+    .mui-content .top ul {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #666666;
+      font-size: 12px; }
+  .mui-content .slider {
+    width: 100%;
+    height: 500px;
+    background: white;
+    margin: 15px auto; }
+  .mui-content .detailsClass {
+    width: 95%;
+    height: 95px;
+    margin: 10px auto;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .mui-content .detailsClass .img {
+      width: 80px;
+      height: 80px; }
+      .mui-content .detailsClass .img img {
+        width: 100%;
+        height: 100%;
+        border-radius: 3px; }
+    .mui-content .detailsClass .right {
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: space-around; }
+      .mui-content .detailsClass .right p {
+        font-size: 14px; }
+      .mui-content .detailsClass .right ul {
+        width: 205px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #999999;
+        font-size: 14px; }
+        .mui-content .detailsClass .right ul li {
+          font-size: 13px; }
+        .mui-content .detailsClass .right ul li:last-child {
+          color: #e281c2; }
+
+/*# sourceMappingURL=storyList.css.map */

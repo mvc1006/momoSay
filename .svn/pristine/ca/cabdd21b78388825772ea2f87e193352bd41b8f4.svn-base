@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/reset.css" />
+		 <link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_l3avnzji1lh.css" />
+		 <link rel="stylesheet" href="css/liMarquee.css" />
+		 <!--<link rel="stylesheet" href="css/normalize.css" />-->
+		 <link rel="stylesheet" href="css/default.css" />
+		<link rel="stylesheet" href="css/story.css" />
+		
+		<script src="js/mui.min.js"></script>
+		<script src="./js/jquery-3.1.1.min.js"></script>
+		
+		<script type="text/javascript">
+			 	mui.init({
+					preloadPages:[{
+					  'url':'./subpages/articleDetail11.html',
+					  'id':'articleDetail11.html'
+						   },
+					
+					{
+						'url':'./subpages/storyList.html',
+					  'id':'storyList.html'
+					}
+					],
+					
+					
+					
+					})
+		</script>
+	</head>
+
+	<body>
+			
+		
+		<header class="mui-bar mui-bar-nav">
+		    <!--<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #e281c2;"></a>-->
+		    <i class="iconfont icon-shoucang1"style="margin-left: 5px; color: #e281c2;" ></i>
+		    <h1 class="mui-title">小故事</h1>
+		   <i style="margin-right: 5px; color: #e281c2;" class="iconfont icon-leimupinleifenleileibie--"></i>
+		</header>
+		<div class="mui-content wrap">
+		    <!--轮播组件-->
+	   <!--轮播组件-->
+	    <div class="mui-slider">
+	      <div class="mui-slider-group mui-slider-loop">
+	       <div class="mui-slider-item mui-slider-item-duplicate">
+	           <img id="banner" src="./images/banner/gushibd.jpg" alt="" />
+	       </div>
+	      </div>
+	    </div>
+	    
+	   
+	    <!--学习提示-->
+	    <!--<div class="reminder">
+
+	    	<p>
+	    		<i class="iconfont icon-laba"></i>
+	    		
+	    		<span id="msg">小朋友快来一起听故事吧</span>				
+	    	</p>
+	    </div>-->
+	 <div class="jq22-container">
+	    	<i class="iconfont icon-laba" style="color: red; float: left;margin-top: 16px;"></i>
+			<div class="jq22-content" style="width: 380px;">
+				<div class="str1 str_wrap" style="height:20px;margin-left: -20px;background: #fdfafc;">
+			        <p id="msg" style="line-height: 20px;font-size: 14px;"></p>		       
+			   </div>
+		    </div>
+		</div>
+	       
+	    <!--识字识物开始分类-->
+	    <div id="kind" class="kind">
+	    	    	
+	    </div>
+	   
+		</div>
+
+	</body>
+
+</html>
+
+<script src="js/jquery.liMarquee.js"></script>
+
+ <script>
+ 	
+	
+
+</script> 
+<script>
+	
+	
+	 mui.plusReady(function(){
+    //获得slider插件对象
+    	var gallery = mui('.mui-slider');
+        gallery.slider({
+  	    interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+  	    
+  	    });
+  	  
+  	   
+  	   var access_token = localStorage.getItem("access_token");//取回students变量
+  	       mui.ajax({
+  	    	url:'http://www.internet-web.cn/Story/StoryBigMain',
+  	    	type:'GET',
+  	    	data:{'access_token':access_token},
+  	    	success:function(data){
+  	    		
+	    		data = JSON.parse(data);
+	    		
+	    		var banner = data.data.banner[0].ImgUrl;
+	    		document.getElementById('banner').setAttribute('src',banner);
+	    		
+	    		var msg = data.data.msg[0].Msg;
+	    		document.getElementById('msg').innerText = msg;
+	    		
+	    		//跑马灯效果
+	    		$('.str1').liMarquee();
+	    		
+	    		var cate = data.data.cate;
+	    		for(var i = 0;i<cate.length;i++){
+	    			
+	    			var Name = cate[i].Name;
+	    			
+	    			var html1 =
+						'\t    <div id="class'+i+'" class="class">\n' +
+                        '\t    \t\t<p id="title'+i+'" class="title"> \n' +
+                        '\t    \t\t\t<span>'+Name+'</span>\n' +
+                        '\t    \t\t\t<span><i class="iconfont icon-gengduo1"></i></span>\n' +
+                        '\t    \t\t</p>\n' +
+
+                        '\t    \t</div>';
+
+
+	    			$('#kind').append(html1);
+
+
+//                  document.getElementById('title'+i+'').addEventListener('tap',function(){
+//
+//                      mui.openWindow({
+//                          url:'./subpages/storyList.html',
+//                          id:'storyList.html'
+//
+//                      })
+//                  });
+
+	    			var storyList = cate[i].storyList;
+
+	    			for(var j = 0 ;j<storyList.length;j++){
+
+	    			    var ID = storyList[j].ID;
+	    			    var Name = storyList[j].Name;
+	    			    var Desp = storyList[j].Desp;
+	    			    var SubImg = storyList[j].SubImg;
+	    			    var SubUser = storyList[j].SubUser;
+	    			    var OldPrice = storyList[j].OldPrice;
+	    			    var NewPrice = storyList[j].NewPrice;
+	    			    var CreateTime = storyList[j].CreateTime;
+
+	    			    var html2 = '<div id="each'+j+'" class="each mui-row">\n' +
+                            '\t    \t\t\t<div class="img mui-col-xs-3">\n' +
+                            '<input id="input" type="text" value="'+ID+'" hidden>'+
+                            '\t    \t\t\t\t<img src="'+SubImg+'" alt="" />\n' +
+                            '\t    \t\t\t</div>\n' +
+                            '\t    \t\t\t<div class="details mui-col-xs-8">\n' +
+                            '\t    \t\t\t\t<h5>'+Name+'</h5>   \n' +
+                            '\t    \t\t\t\t<p class="des">简介：'+Desp+'</p>\n' +
+                            '\t    \t\t\t\t<ul>\n' +
+                            '\t    \t\t\t\t\t\n' +
+                            '\t    \t\t\t\t\t<li>\n' +
+                            '\t    \t\t\t\t\t\t<p>订阅量：<span>'+SubUser+'</span></p>\n' +
+                            '\t    \t\t\t\t\t</li>\n' +
+                            '\t    \t\t\t\t\t<li>\n' +
+                            '\t    \t\t\t\t\t    <p>价格：￥            <i>'+OldPrice+'</i></p>\n' +
+                            '\t    \t\t\t\t\t</li>\n' +
+                            '\t    \t\t\t\t\t\n' +
+                            '\t    \t\t\t\t</ul>\n' +
+                            '\t    \t\t\t\t\n' +
+                            '\t    \t\t\t</div>\n' +
+                            '\t    \t\t\t\n' +
+                            '\t    \t\t</div>'
+
+
+						$('#class'+i+'').append(html2);
+						
+						
+						document.getElementById('each'+j+'').addEventListener('tap',function(){
+							
+//							mui.toast($(this).find('#input').val());
+	                        mui.openWindow({
+	                            url:'./subpages/storyList.html',
+//	                            id:'storyList.html',
+	                            
+								extras: {'idd':$(this).find('#input').val()},		
+	                       	 })
+                 	   });
+
+					}
+	    			
+	    			
+	    		}
+  	    		
+  	    	}
+  	    });
+
+
+
+    
+    });
+    
+  
+
+    
+  
+		
+    
+
+
+
+
+
+		
+
+
+</script>

@@ -1,0 +1,31 @@
+.wrap {
+  max-width: 1080px;
+  height: auto;
+  background: gold;
+  margin: 0 auto;
+  padding-bottom: 20px; }
+  .wrap .img {
+    width: 95%;
+    margin: 15px auto; }
+    .wrap .img img {
+      width: 100%; }
+  .wrap .listimg {
+    width: 95%;
+    height: auto;
+    padding-bottom: 50px;
+    background: darkgreen;
+    margin: 0 auto; }
+    .wrap .listimg .imgbox {
+      width: 100%;
+      height: 160px;
+      background: darkkhaki;
+      margin-top: 10px;
+      padding: 10px 0px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around; }
+      .wrap .listimg .imgbox .eachimg {
+        height: 100%;
+        background: darkgreen; }
+
+/*# sourceMappingURL=articleDetail.css.map */

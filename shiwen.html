@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="http://at.alicdn.com/t/font_711811_v34fxlm07h.css" />
+		<link rel="stylesheet" href="./css/shiwen.css" />
+		 <link rel="stylesheet" href="css/liMarquee.css" />
+		 <!--<link rel="stylesheet" href="css/normalize.css" />-->
+		 <link rel="stylesheet" href="css/default.css" />
+		<style type="text/css">
+			
+			/*#study{
+				color: #DD524D;
+			}*/
+			body{
+				background: #FFFFFF;
+			}
+		</style>
+		<script src="js/jquery-3.1.1.min.js"></script>
+	</head>
+
+	<body>
+		
+		<header class="mui-bar mui-bar-nav">
+		    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"  style="color: #e281c2;"></a>
+		    <!--<i class="iconfont icon-shoucang2"></i>-->
+		    <h1 class="mui-title">诗文乐园</h1>
+		    <!--<i class="iconfont icon-leimupinleifenleileibie--"></i>-->
+		</header>
+		<div class="mui-content wrap">
+		
+	    	<div class="banner">
+	    		<img id="bannerListOne" src="images/banner/banner4.jpg" alt="" />
+	    	</div>
+	    <!--学习提示-->
+	    <!--<div class="reminder">
+	    	
+	    	<p>
+	    		<i class="iconfont icon-laba" style="color: red;"></i>
+	    		
+	    		<span id="msgList"></span>
+	    	</p>
+	    </div>-->
+	    
+	    <div class="jq22-container">
+	    	<i class="iconfont icon-laba" style="color: red; float: left;margin-top: 16px;"></i>
+			<div class="jq22-content" style="width: 380px;">
+				<div class="str1 str_wrap" style="height:20px;margin-left: -20px;background: #fdfafc;">
+			        <p id="msgList" style="line-height: 20px;"></p>		       
+			   </div>
+		    </div>
+		</div>
+	    <!--识字识物开始分类-->
+	    <div class="kind">
+	    	<ul id="cateList" class="mui-table-view">
+			   
+			</ul>
+	    </div>
+	    </div>
+		</div>
+		
+		
+		
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			 	mui.init({
+					preloadPages:[{
+					  'url':'./subpages/articleDetail11.html',
+					  'id':'articleDetail11.html'
+						    }],
+					
+					})
+		</script>
+		
+		
+	</body>
+
+</html>
+<script src="js/jquery.liMarquee.js"></script>
+<script>
+	
+	mui.plusReady(function(){
+		 var access_token = localStorage.getItem("access_token");//取回students变量
+		mui.ajax({
+			
+			url:'http://www.internet-web.cn/Poem/PoemMain',
+			type:'GET',
+			data:{'access_token':access_token},
+			success:function(data){
+				data = JSON.parse(data);
+				
+				var bannerListOne = data.data.bannerList[0].ImgUrl;
+				document.getElementById('bannerListOne').setAttribute('src',bannerListOne);
+
+				var msgList = data.data.msgList[0].Msg;
+				
+//				mui.alert(msgList1)
+				document.getElementById('msgList').innerText = msgList;
+				$('.str1').liMarquee();
+
+				
+				var cateList = data.data.cateList;
+				
+				for(var i = 0;i<cateList.length;i++){
+					
+					var ID = cateList[i].ID;
+					var Name = cateList[i].Name;
+					var Desp = cateList[i].Desp;
+					var SubImg = cateList[i].SubImg;
+					
+					var html =
+						  ' <li id="eachPoem'+i+'" class="mui-table-view-cell mui-media">'+
+						  	'<input id="input" type="text" hidden  value="'+ID+'">'+
+						        '<a href="javascript:;">'+
+						            '<img class="mui-media-object mui-pull-left" src="'+SubImg+'">'+
+						            '<div class="mui-media-body">'+
+						             	'<span>'+Name+'</span>'+
+						                '<p class="mui-ellipsis">'+Desp+'</p>'+
+						            '</div>'+
+						        '</a>'+
+						    '</li>';
+
+
+					$('#cateList').append(html);
+				
+				
+					document.getElementById('eachPoem'+i+'').addEventListener('tap',function(){
+						var id = $(this).find('#input').val();
+								
+								
+//								alert(id)
+							mui.openWindow({
+								url:'subpages/shiwenDetail.html',
+								extras:{'dddddd':id,'name':Name}
+								
+							
+							})
+					})
+
+				}
+			}
+		})
+		
+
+	});
+
+
+	
+	
+//	for(var i  = 0;i<fruits.length;i++){
+//		fruits[i].addEventListener('tap',function(){
+//			
+//				mui.openWindow({
+//			    url:'subpages/articleDetail11.html',
+//			    id:'articleDetail11.html',
+//			    styles:{
+//			    
+//			    },
+//			   
+//			 })
+//		})
+//	}
+	
+
+
+</script>

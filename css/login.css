@@ -1,0 +1,36 @@
+.content {
+  width: 90%;
+  height: 300px;
+  margin: 100px auto; }
+  .content form {
+    padding-bottom: 60px;
+    padding-top: 50px;
+    border-radius: 10px;
+    background: transparent; }
+    .content form .mui-input-row {
+      display: flex;
+      align-items: center;
+      padding-left: 15px; }
+  .content .mui-input-group {
+    position: static; }
+  .content .mui-button-row .mui-btn-danger {
+    width: 95%;
+    height: 50px;
+    letter-spacing: 2px;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 10px 0px;
+    margin: 55px auto;
+    background: #DDA0DD;
+    border: 1px solid #DDA0DD;
+    color: #FFFFFF; }
+  .content button {
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #F0AD4E;
+    margin: 0 auto;
+    background: transparent;
+    border: none; }
+
+/*# sourceMappingURL=login.css.map */

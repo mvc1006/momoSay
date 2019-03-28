@@ -1,0 +1,94 @@
+body {
+  position: relative;
+}
+
+.mui-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrap {
+  min-height: 600px;
+  /*height: 300px;*/
+  margin: 20px auto;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  position: relative;
+  font-size: 16px;
+  border: none;
+}
+.wrap .pic {
+  width: 95%;
+  height: 120px;
+  background: #FFFFFF;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 0 5%;
+  padding-left: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrap .pic .box {
+  height: 110px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.wrap .pic .box .touxiang {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: silver;
+}
+.wrap .pic .box .touxiang img {
+  width: 100%;
+  border-radius: 50%;
+}
+.wrap .pic .box .nikename {
+  width: 140px;
+  height: 60px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-top: 10px;
+  margin-left: 10px;
+}
+.wrap .pic .box .nikename p {
+  width: 140px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.wrap .pic i {
+  font-size: 20px;
+}
+.wrap .baby {
+  width: 95%;
+  margin: 20px auto;
+}
+.wrap .baby ul {
+  margin-top: 20px;
+  padding: 3px 0;
+  border-radius: 5px;
+  background: #FFFFFF;
+  color: #666666;
+  border: none;
+}
+.wrap .quit {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  height: 50px;
+}
+.wrap .quit .quitBtn {
+  width: 95%;
+  height: 50px;
+  font-size: 16px;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+}
